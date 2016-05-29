@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
-        android:layout_below="@+id/lblBienvenida"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="91dp" />
+        android:background="@drawable/doc_fit_welcome"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
