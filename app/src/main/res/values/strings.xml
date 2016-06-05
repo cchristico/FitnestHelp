@@ -1,8 +1,19 @@
 <resources>
-    <string name="app_name">MaterialAplication</string>
+    <string name="app_name">doctorfit</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="lblBienvenida">Bienvenido</string>
+    <string name="lblNombre">¿Cómo te llamas?</string>
+    <string name="btningresar">Ingresar</string>
+    <string name="lblNacimiento">¿Cuándo naciste?</string>
+    <string name="lblSexo">Selecciona tu sexo</string>
+    <string name="lblAlturaPeso">¿Cuál es tu peso y altura?</string>
+    <string name="lblCinturaCadera">¿Cuáles son tus medidas?</string>
+    <string name="lblContextura">Selecciona tu contextura</string>
+    <string name="lblPesoIdeal">¿Cuánto te gustaría pesar?</string>
+    <string name="lblRutina">Describe tu rutina diaria</string>
+
 </resources>

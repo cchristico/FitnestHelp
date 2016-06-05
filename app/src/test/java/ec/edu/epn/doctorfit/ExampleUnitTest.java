@@ -1,4 +1,4 @@
-package ec.edu.epn.materialaplication;
+package ec.edu.epn.doctorfit;
 
 import org.junit.Test;
 

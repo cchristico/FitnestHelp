@@ -1,4 +1,4 @@
-package ec.edu.epn.materialaplication;
+package ec.edu.epn.doctorfit;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

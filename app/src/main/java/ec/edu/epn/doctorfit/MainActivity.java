@@ -1,4 +1,4 @@
-package ec.edu.epn.materialaplication;
+package ec.edu.epn.doctorfit;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
