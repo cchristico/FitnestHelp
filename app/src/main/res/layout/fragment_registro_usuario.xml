@@ -10,10 +10,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txtviewnombreusuario" />
+        android:text="@string/lblNombreUsuario" />
 
     <EditText
-        android:id="@+id/edittextnombreusuario"
+        android:id="@+id/editTextNombreUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
@@ -21,10 +21,20 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txtviewapellidousuario" />
+        android:text="@string/lblEdadUsuario" />
 
     <EditText
-        android:id="@+id/edittextapellidousuario"
+        android:id="@+id/editTextEdadUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lblSexoUsuario" />
+
+    <EditText
+        android:id="@+id/editTextSexoUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
@@ -32,10 +42,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txtviewemailusuario" />
+        android:text="@string/lblEstaturaUsuario" />
 
     <EditText
-        android:id="@+id/edittextemailusuario"
+        android:id="@+id/editTextEstaturaUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center" />

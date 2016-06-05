@@ -20,11 +20,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
-    <!--ETIQUETAS DE TEXTVIEW-->
-    <string name="txtviewnombreusuario">NOMBRE :</string>
-    <string name="txtviewapellidousuario">APELLIDO: </string>
-    <string name="txtviewedadusuario">EDAD: </string>
-    <string name="txtviewemailusuario">CORREO ELECTRONICO:</string>
+    <!--ETIQUETAS DE TEXTVIEW TABLA USUARIO-->
+    <string name="lblNombreUsuario">NOMBRE :</string>
+    <string name="lblSexoUsuario">SEXO: </string>
+    <string name="lblEdadUsuario">EDAD: </string>
+    <string name="lblEstaturaUsuario">ESTATURA:</string>
 
     <!--TEXTO DE BOTONES-->
     <string name="btncrear">CREAR</string>
