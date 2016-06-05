@@ -16,4 +16,17 @@
     <string name="lblPesoIdeal">¿Cuánto te gustaría pesar?</string>
     <string name="lblRutina">Describe tu rutina diaria</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!--ETIQUETAS DE TEXTVIEW TABLA USUARIO-->
+    <string name="lblNombreUsuario">NOMBRE :</string>
+    <string name="lblSexoUsuario">SEXO: </string>
+    <string name="lblEdadUsuario">EDAD: </string>
+    <string name="lblEstaturaUsuario">ESTATURA:</string>
+
+    <!--TEXTO DE BOTONES-->
+    <string name="btncrear">CREAR</string>
+    <string name="btncancelar">CANCELAR</string>
 </resources>
