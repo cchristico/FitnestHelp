@@ -3,6 +3,7 @@ package ec.edu.epn.doctorfit;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import layout.RegistroUsuario;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -82,17 +85,23 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_inicio) {
-            Toast.makeText(this,"INICIO",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "INICIO", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_registro) {
-            Toast.makeText(this,"REGISTRO",Toast.LENGTH_SHORT).show();
+            RegistroUsuario registroUsuario = new RegistroUsuario();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(
+                    R.id.fragment_content_main_layout,
+                    registroUsuario,
+                    registroUsuario.getTag()
+            ).commit();
 
         } else if (id == R.id.nav_progreso) {
-            Toast.makeText(this,"PROGRESO",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "PROGRESO", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_recetas_alimentos) {
-            Toast.makeText(this,"RECETAS",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "RECETAS", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_recordatorios) {
-            Toast.makeText(this,"RECORDATORIOS",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "RECORDATORIOS", Toast.LENGTH_SHORT).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
