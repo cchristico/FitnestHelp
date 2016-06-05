@@ -16,7 +16,7 @@ public class DaoGeneradorEntidades {
         //En este ejemplo hay un unico esquema de base de datos si hubiera mas deberian agregarse
         Schema schema = new Schema(1, "ec.edu.epn.doctorfit.sqlite.db");
 
-        //Este metodo se encargara de crear la estructura de la tabla cliente
+        //Este metodo se encargara de crear la estructura de las tablas y las relaciones entre ellas
         addTables(schema);
 
         //Se encargara de generar el codigo correspondiente en la ruta que se le especifico
@@ -76,6 +76,31 @@ public class DaoGeneradorEntidades {
         alimento.addStringProperty("aporteNutricional").notNull();
         alimento.addFloatProperty("porcentajeNutricional").notNull();
         alimento.addStringProperty("tipoAlimento").notNull();
+
+        // RELACIONES ENTRE TABLAS
+        Property idUsuarioEstado = estado.addLongProperty("idUsuario").notNull().getProperty();
+        usuario.addToMany(estado, idUsuarioEstado);
+        estado.addToOne(usuario,idUsuarioEstado);
+
+        Property idUsuarioEstadoDeseado = estadoDeseado.addLongProperty("idUsuario").notNull().getProperty();
+        usuario.addToMany(estadoDeseado, idUsuarioEstadoDeseado);
+        estadoDeseado.addToOne(usuario,idUsuarioEstadoDeseado);
+
+        Property idUsuarioAlimentacionSedentarismo = alimentacionSedentarismo.addLongProperty("idUsuario").notNull().getProperty();
+        usuario.addToMany(alimentacionSedentarismo, idUsuarioAlimentacionSedentarismo);
+        alimentacionSedentarismo.addToOne(usuario,idUsuarioAlimentacionSedentarismo);
+
+        Property idEstadoDeseado = dieta.addLongProperty("idEstadoDeseado").notNull().getProperty();
+        estadoDeseado.addToMany(dieta, idEstadoDeseado);
+        dieta.addToOne(estadoDeseado,idEstadoDeseado);
+
+        Property idDieta = platillo.addLongProperty("idDieta").notNull().getProperty();
+        dieta.addToMany(platillo, idDieta);
+        platillo.addToOne(dieta,idDieta);
+
+        Property idPlatillo = alimento.addLongProperty("idPlatillo").notNull().getProperty();
+        platillo.addToMany(alimento, idPlatillo);
+        alimento.addToOne(usuario,idPlatillo);
 
     }
 }

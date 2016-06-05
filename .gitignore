@@ -58,7 +58,7 @@ hs_err_pid*
 # if you remove the above rule, at least ignore the following:
 
 # User-specific stuff:
- .idea/workspace.xml
+.idea/workspace.xml
 # .idea/tasks.xml
 # .idea/dictionaries
 
@@ -71,7 +71,7 @@ hs_err_pid*
 
 # Gradle:
 # .idea/gradle.xml
-# .idea/libraries
+.idea/libraries
 
 # Mongo Explorer plugin:
 # .idea/mongoSettings.xml
