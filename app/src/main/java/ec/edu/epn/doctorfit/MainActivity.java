@@ -15,6 +15,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import ec.edu.epn.doctorfit.sqlite.db.Estado;
+import layout.EstadoUsuario;
+import layout.ProgresoUsuario;
+import layout.RecetasUsuario;
 import layout.RegistroUsuario;
 
 public class MainActivity extends AppCompatActivity
@@ -87,6 +91,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_inicio) {
             Toast.makeText(this, "INICIO", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_registro) {
+            Toast.makeText(this, "REGISTRO", Toast.LENGTH_SHORT).show();
             RegistroUsuario registroUsuario = new RegistroUsuario();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(
@@ -97,10 +102,30 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_progreso) {
             Toast.makeText(this, "PROGRESO", Toast.LENGTH_SHORT).show();
+            ProgresoUsuario progresoUsuario = new ProgresoUsuario();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(
+                    R.id.fragment_content_main_layout,
+                    progresoUsuario,
+                    progresoUsuario.getTag()
+            ).commit();
 
         } else if (id == R.id.nav_recetas_alimentos) {
-            Toast.makeText(this, "RECETAS", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_recordatorios) {
+            Toast.makeText(this, "RECETAS Y ALIMENTOS", Toast.LENGTH_SHORT).show();
+            RecetasUsuario recetasUsuario = new RecetasUsuario();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(
+                    R.id.fragment_content_main_layout,
+                    recetasUsuario,
+                    recetasUsuario.getTag()
+            ).commit();
+        } else if (id == R.id.nav_estado_usuario) {
+            EstadoUsuario estadoUsuario = new EstadoUsuario();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(
+                    R.id.fragment_content_main_layout,
+                    estadoUsuario,
+                    estadoUsuario.getTag()).commit();
             Toast.makeText(this, "RECORDATORIOS", Toast.LENGTH_SHORT).show();
         }
 

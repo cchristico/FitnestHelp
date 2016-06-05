@@ -11,6 +11,7 @@
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
+<<<<<<< HEAD
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
@@ -47,6 +48,11 @@
         android:layout_height="84dp"
         android:text="@string/btnMantenerPeso"
         android:layout_gravity="center_horizontal|bottom" />
+=======
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="PROGRESO" />
+>>>>>>> 543927b826c4bc392530fc03e3bffec2340ff6c1
 
 </FrameLayout>
 

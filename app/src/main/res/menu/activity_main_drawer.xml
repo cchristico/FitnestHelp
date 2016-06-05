@@ -19,22 +19,11 @@
             android:icon="@drawable/ic_menu_food"
             android:title="Mis recetas y alimentos" />
         <item
-            android:id="@+id/nav_recordatorios"
-            android:icon="@drawable/ic_menu_recordatorio"
-            android:title="Recordatorios" />
+            android:id="@+id/nav_estado_usuario"
+            android:icon="@drawable/ic_menu_estado"
+            android:title="Estado " />
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Compartir" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Enviar" />
-        </menu>
-    </item>
+   
 
 </menu>
