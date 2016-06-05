@@ -2,18 +2,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00BCD4"
+    android:background="@drawable/fondo_doctorfit"
     android:orientation="vertical"
     tools:context="layout.RegistroUsuario">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="REGISTRO USUARIO"/>
+        android:layout_gravity="center"
+        android:text="@string/lblGeneroUsuario" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnFemenino"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnFemenino" />
+
+        <Button
+            android:id="@+id/btnMaculino"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnMasculino" />
+    </LinearLayout>
+
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/lblNombreUsuario" />
+        android:text="@string/lblNombreUsuario"
+        android:layout_gravity="center"/>
 
     <EditText
         android:id="@+id/editTextNombreUsuario"
@@ -22,46 +44,48 @@
         android:layout_gravity="center" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/lblEdadUsuario" />
+        android:text="@string/lblEstaturaUsuario"
+        android:layout_gravity="center"/>
 
-    <EditText
-        android:id="@+id/editTextEdadUsuario"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+
+        <!--<EditText-->
+            <!--android:id="@+id/editTextEstaturaUsuario"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center" />-->
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"></NumberPicker>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/lblCm" />
+    </LinearLayout>
+
+
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/lblSexoUsuario" />
-
-    <EditText
-        android:id="@+id/editTextSexoUsuario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/lblEstaturaUsuario" />
-
-    <EditText
-        android:id="@+id/editTextEstaturaUsuario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:text="@string/lblfechaNacimiento"
+        android:layout_gravity="center"/>
 
     <Button
-        android:id="@+id/btncrear"
-        android:layout_width="match_parent"
+        android:id="@+id/btnFecha"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btncrear"/>
-    <Button
-        android:id="@+id/btncancelar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btncancelar"/>
+        android:layout_gravity="center"
+        android:text="-- / -- / ----"/>
+
+
 
 </LinearLayout>

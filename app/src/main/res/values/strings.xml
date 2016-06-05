@@ -22,11 +22,17 @@
 
     <!--ETIQUETAS DE TEXTVIEW TABLA USUARIO-->
     <string name="lblNombreUsuario">NOMBRE :</string>
-    <string name="lblSexoUsuario">SEXO: </string>
+    <string name="lblGeneroUsuario">CUAL ES TU GÉNERO: </string>
     <string name="lblEdadUsuario">EDAD: </string>
     <string name="lblEstaturaUsuario">ESTATURA:</string>
+    <string name="lblCm">cm</string>
+    <string name="lblfechaNacimiento">FECHA DE NACIMIENTO: </string>
 
     <!--TEXTO DE BOTONES-->
-    <string name="btncrear">CREAR</string>
-    <string name="btncancelar">CANCELAR</string>
+    <string name="btnCrear">CREAR</string>
+    <string name="btnCancelar">CANCELAR</string>
+    <string name="btnMasculino">MASCULINO</string>
+    <string name="btnFemenino">FEMENINO</string>
+
+
 </resources>
