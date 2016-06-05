@@ -82,15 +82,17 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_inicio) {
-            Toast.makeText(this,"INICIO",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"INICIO",Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_registro) {
+            Toast.makeText(this,"REGISTRO",Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_progreso) {
-            Toast.makeText(this,"PROGRESO",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"PROGRESO",Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_recetas_alimentos) {
-
+            Toast.makeText(this,"RECETAS",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_recordatorios) {
-
+            Toast.makeText(this,"RECORDATORIOS",Toast.LENGTH_SHORT).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
