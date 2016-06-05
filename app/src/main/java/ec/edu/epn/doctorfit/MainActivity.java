@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -81,9 +82,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_inicio) {
-            // handle the inicio action
+            Toast.makeText(this,"INICIO",Toast.LENGTH_LONG).show();
 
         } else if (id == R.id.nav_progreso) {
+            Toast.makeText(this,"PROGRESO",Toast.LENGTH_LONG).show();
 
         } else if (id == R.id.nav_recetas_alimentos) {
 
