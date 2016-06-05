@@ -22,7 +22,7 @@
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer" />
 
-
+    <!--fitSystemWindows: Boolean internal attribute to adjust view layout based on system windows such as the status bar. If true, adjusts the padding of this view to leave space for the system windows.-->
 
 
 </android.support.v4.widget.DrawerLayout>
