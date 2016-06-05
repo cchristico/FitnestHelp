@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">doctorfit</string>
+    <string name="app_name">DoctorFit</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -17,7 +17,7 @@
     <string name="lblRutina">Describe tu rutina diaria</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">¿Eres nuevo? Elije tu objetivo:</string>
 
 
     <!--ETIQUETAS DE TEXTVIEW TABLA USUARIO-->
@@ -29,4 +29,11 @@
     <!--TEXTO DE BOTONES-->
     <string name="btncrear">CREAR</string>
     <string name="btncancelar">CANCELAR</string>
+    <string name="btnPerderPeso">Pierde peso de forma sana \n reduciendo calorías</string>
+    <string name="btnMantenerPeso">Mantén tu peso \n disfrutando de una dieta sana</string>
+    <string name="btnGanarPeso">Gana peso de forma sana \n ganando masa muscular</string>
+
+
+
+
 </resources>
