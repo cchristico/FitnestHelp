@@ -2,6 +2,7 @@ package layout;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -22,7 +23,7 @@ import ec.edu.epn.doctorfit.sqlite.db.DaoSession;
  * A simple {@link Fragment} subclass.
  */
 public class ActividadFisicaDiaria extends Fragment {
-
+    private OnFragmentInteractionListener mListener;
     private FloatingActionButton floatingActionButton;
     private Button buttonNoMuyActivo, buttonMedianamenteActivo, buttonActivo, buttonMuyActivo;
     private View fragmentActividadFisica;
@@ -42,17 +43,13 @@ public class ActividadFisicaDiaria extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         fragmentActividadFisica = inflater.inflate(R.layout.fragment_actividad_fisica_diaria, container, false);
 
         doAnActionOnClickButton();
 
 
         return fragmentActividadFisica;
-    }
-
-    public void mostrarSiguienteInterfaz() {
-        Activity activity = getActivity();
-        Toast.makeText(activity, "siguiente Interfaz", Toast.LENGTH_SHORT).show();
     }
 
     public void doAnActionOnClickButton() {
@@ -64,6 +61,10 @@ public class ActividadFisicaDiaria extends Fragment {
             @Override
             public void onClick(View v) {
                 insertarInformacionActividaFisicaDiaria();
+                //llamar a la siguiente interfaz
+
+                mostrarSiguienteInterfaz();
+
                 Activity activity = getActivity();
                 Toast.makeText(activity, "INFORMACION ALMACENADA", Toast.LENGTH_SHORT).show();
             }
@@ -134,4 +135,47 @@ public class ActividadFisicaDiaria extends Fragment {
     private void insertarInformacionActividaFisicaDiaria() {
 
     }
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     *
+     */
+    /**
+     * Modificacion personal para que resiva un entero correspondiente al fragment layout que se va
+     * a pasar al ActivityMain
+     */
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(int uri);
+
+        //este metodo permite pasar los valores del anio actual al MainActivity
+        void onFragmentInteraction(int uri, int anio, int mes, int dia);
+    }
+
+    public void mostrarSiguienteInterfaz() {
+
+        mListener.onFragmentInteraction(R.layout.fragment_dieta_actual);
+
+    }
+
 }

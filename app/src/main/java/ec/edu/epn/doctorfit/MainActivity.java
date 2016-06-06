@@ -32,6 +32,7 @@ import ec.edu.epn.doctorfit.sqlite.db.Platillo;
 import ec.edu.epn.doctorfit.sqlite.db.PlatilloDao;
 import ec.edu.epn.doctorfit.sqlite.db.UsuarioDao;
 import layout.ActividadFisicaDiaria;
+import layout.DietaActual;
 import layout.EstadoUsuario;
 import layout.HomeFragment;
 import layout.ProgresoUsuario;
@@ -40,7 +41,9 @@ import layout.RegistroUsuario;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         RegistroUsuario.OnFragmentInteractionListener,
-        ProgresoUsuario.OnFragmentInteractionListener {
+        ProgresoUsuario.OnFragmentInteractionListener,
+        ActividadFisicaDiaria.OnFragmentInteractionListener,
+DietaActual.OnFragmentInteractionListener{
     private int year_x, month_x, day_x;
     static final int DIALOG_ID = 0;
 
@@ -177,6 +180,13 @@ public class MainActivity extends AppCompatActivity
                     R.id.fragment_content_main_layout,
                     progresoUsuario,
                     progresoUsuario.getTag()).commit();
+        }else if(uri==R.layout.fragment_dieta_actual){
+            DietaActual dietaActual = new DietaActual();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(
+                    R.id.fragment_content_main_layout,
+                    dietaActual,
+                    dietaActual.getTag()).commit();
         }
 
     }
