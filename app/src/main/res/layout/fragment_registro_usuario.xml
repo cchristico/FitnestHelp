@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_doctorfit"
     android:orientation="vertical"
     tools:context="layout.RegistroUsuario"
     >
@@ -25,19 +24,19 @@
         android:layout_gravity="center"
         android:orientation="horizontal">
 
-        <Button
+        <ImageButton
             android:id="@+id/btnFemenino"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#c9fffefe"
-            android:text="@string/btnFemenino" />
-
-        <Button
+            android:src="@drawable/genero_f"
+            android:background="#00ffffff" />
+        <ImageButton
             android:id="@+id/btnMaculino"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#c9fffefe"
-            android:text="@string/btnMasculino" />
+            android:src="@drawable/genero_m"
+            android:background="#00ffffff" />
+
     </LinearLayout>
 
     <TextView
@@ -79,6 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#c9fffefe"
+            android:id="@+id/numPickEdad"
             android:layout_gravity="center"></NumberPicker>
         <TextView
             android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
     </LinearLayout>
 
 
-    <TextView
+    <!--<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/lblfechaNacimiento"
@@ -103,7 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="#c9fffefe"
-        android:text="-- / -- / ----"/>
+        android:text=""/>-->
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabContinuar"
