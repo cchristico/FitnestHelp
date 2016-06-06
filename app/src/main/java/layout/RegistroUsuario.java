@@ -52,19 +52,11 @@ public class RegistroUsuario extends Fragment {
 
     }
 
-    public void onCreate(Bundle objeto) {
-        this.onCreate(objeto);
+    /*public void onCreate(Bundle objeto) {
+        super.onCreate(objeto);
 
-        // Instanciando recursos de la bd
-        databaseName = getResources().getString(R.string.database_name);
-        helper = new DevOpenHelper(getActivity().getApplicationContext(), databaseName, null);
-        db = helper.getWritableDatabase();
-        daoMaster = new DaoMaster(db);
-        daoSession = daoMaster.newSession();
-        usuarioDao = daoSession.getUsuarioDao();
 
-        // TODO Instanciando view
-    }
+    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -81,6 +73,17 @@ public class RegistroUsuario extends Fragment {
                 mostrarSiguienteInterfaz();
             }
         });
+
+        // Instanciando recursos de la bd
+        databaseName = getResources().getString(R.string.database_name);
+        helper = new DevOpenHelper(getActivity().getApplicationContext(), databaseName, null);
+        db = helper.getWritableDatabase();
+        daoMaster = new DaoMaster(db);
+        daoSession = daoMaster.newSession();
+        usuarioDao = daoSession.getUsuarioDao();
+
+        // TODO Instanciando elementos de view (falta)
+
         return viewFragmentRegistro;
 
     }
