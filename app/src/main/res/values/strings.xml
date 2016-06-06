@@ -24,17 +24,18 @@
 
 
     <!--ETIQUETAS DE TEXTVIEW TABLA USUARIO-->
-    <string name="lblNombreUsuario">NOMBRE :</string>
-    <string name="lblGeneroUsuario">CUAL ES TU GÉNERO: </string>
-    <string name="lblEdadUsuario">EDAD: </string>
-    <string name="lblEstaturaUsuario">ESTATURA:</string>
+    <string name="lblNombreUsuario">Nombre :</string>
+    <string name="lblGeneroUsuario">Cúal es tu género?: </string>
+    <string name="lblEdadUsuario">Edad: </string>
+    <string name="lblEstaturaUsuario">Estatura:</string>
     <string name="lblCm">cm</string>
-    <string name="lblfechaNacimiento">FECHA DE NACIMIENTO: </string>
+    <string name="lblfechaNacimiento">Fecha de Nacimiento: </string>
     <string name="lblPesoActual">¿Cuánto pesas actualmente?:</string>
     <string name="lblPesoDeseado">¿Cuál es tu peso ideal?:</string>
     <string name="lblUnidadPeso">kg:</string>
     <string name="lblMenu">Menú</string>
-    <string name="lblConsejoDelDia">CONSEJO DEL DIA:</string>
+    <string name="lblConsejoDelDia">Consejo del dia:</string>
+    <string name="lblActividadFisica">Activida Física diaria?</string>
 
 
     <!--TEXTO DE BOTONES-->
