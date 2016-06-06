@@ -13,16 +13,12 @@ public class Platillo {
     private Long id;
     /** Not-null value. */
     private String nombrePlatillo;
-    private long idDieta;
 
     /** Used to resolve relations */
     private transient DaoSession daoSession;
 
     /** Used for active entity operations. */
     private transient PlatilloDao myDao;
-
-    private Dieta dieta;
-    private Long dieta__resolvedKey;
 
     private List<Alimento> alimentoList;
 
@@ -33,10 +29,9 @@ public class Platillo {
         this.id = id;
     }
 
-    public Platillo(Long id, String nombrePlatillo, long idDieta) {
+    public Platillo(Long id, String nombrePlatillo) {
         this.id = id;
         this.nombrePlatillo = nombrePlatillo;
-        this.idDieta = idDieta;
     }
 
     /** called by internal mechanisms, do not call yourself. */
@@ -61,42 +56,6 @@ public class Platillo {
     /** Not-null value; ensure this value is available before it is saved to the database. */
     public void setNombrePlatillo(String nombrePlatillo) {
         this.nombrePlatillo = nombrePlatillo;
-    }
-
-    public long getIdDieta() {
-        return idDieta;
-    }
-
-    public void setIdDieta(long idDieta) {
-        this.idDieta = idDieta;
-    }
-
-    /** To-one relationship, resolved on first access. */
-    public Dieta getDieta() {
-        long __key = this.idDieta;
-        if (dieta__resolvedKey == null || !dieta__resolvedKey.equals(__key)) {
-            if (daoSession == null) {
-                throw new DaoException("Entity is detached from DAO context");
-            }
-            DietaDao targetDao = daoSession.getDietaDao();
-            Dieta dietaNew = targetDao.load(__key);
-            synchronized (this) {
-                dieta = dietaNew;
-            	dieta__resolvedKey = __key;
-            }
-        }
-        return dieta;
-    }
-
-    public void setDieta(Dieta dieta) {
-        if (dieta == null) {
-            throw new DaoException("To-one property 'idDieta' has not-null constraint; cannot set to-one to null");
-        }
-        synchronized (this) {
-            this.dieta = dieta;
-            idDieta = dieta.getId();
-            dieta__resolvedKey = idDieta;
-        }
     }
 
     /** To-many relationship, resolved on first access (and after reset). Changes to to-many relations are not persisted, make changes to the target entity. */

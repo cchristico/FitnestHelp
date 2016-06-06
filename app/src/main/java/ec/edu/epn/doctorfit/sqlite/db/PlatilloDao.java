@@ -1,17 +1,12 @@
 package ec.edu.epn.doctorfit.sqlite.db;
 
-import java.util.List;
-import java.util.ArrayList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 
 import de.greenrobot.dao.AbstractDao;
 import de.greenrobot.dao.Property;
-import de.greenrobot.dao.internal.SqlUtils;
 import de.greenrobot.dao.internal.DaoConfig;
-import de.greenrobot.dao.query.Query;
-import de.greenrobot.dao.query.QueryBuilder;
 
 import ec.edu.epn.doctorfit.sqlite.db.Platillo;
 
@@ -30,12 +25,10 @@ public class PlatilloDao extends AbstractDao<Platillo, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property NombrePlatillo = new Property(1, String.class, "nombrePlatillo", false, "NOMBRE_PLATILLO");
-        public final static Property IdDieta = new Property(2, long.class, "idDieta", false, "ID_DIETA");
     };
 
     private DaoSession daoSession;
 
-    private Query<Platillo> dieta_PlatilloListQuery;
 
     public PlatilloDao(DaoConfig config) {
         super(config);
@@ -51,8 +44,7 @@ public class PlatilloDao extends AbstractDao<Platillo, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"PLATILLO\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
-                "\"NOMBRE_PLATILLO\" TEXT NOT NULL ," + // 1: nombrePlatillo
-                "\"ID_DIETA\" INTEGER NOT NULL );"); // 2: idDieta
+                "\"NOMBRE_PLATILLO\" TEXT NOT NULL );"); // 1: nombrePlatillo
     }
 
     /** Drops the underlying database table. */
@@ -71,7 +63,6 @@ public class PlatilloDao extends AbstractDao<Platillo, Long> {
             stmt.bindLong(1, id);
         }
         stmt.bindString(2, entity.getNombrePlatillo());
-        stmt.bindLong(3, entity.getIdDieta());
     }
 
     @Override
@@ -91,8 +82,7 @@ public class PlatilloDao extends AbstractDao<Platillo, Long> {
     public Platillo readEntity(Cursor cursor, int offset) {
         Platillo entity = new Platillo( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.getString(offset + 1), // nombrePlatillo
-            cursor.getLong(offset + 2) // idDieta
+            cursor.getString(offset + 1) // nombrePlatillo
         );
         return entity;
     }
@@ -102,7 +92,6 @@ public class PlatilloDao extends AbstractDao<Platillo, Long> {
     public void readEntity(Cursor cursor, Platillo entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setNombrePlatillo(cursor.getString(offset + 1));
-        entity.setIdDieta(cursor.getLong(offset + 2));
      }
     
     /** @inheritdoc */
@@ -128,111 +117,4 @@ public class PlatilloDao extends AbstractDao<Platillo, Long> {
         return true;
     }
     
-    /** Internal query to resolve the "platilloList" to-many relationship of Dieta. */
-    public List<Platillo> _queryDieta_PlatilloList(long idDieta) {
-        synchronized (this) {
-            if (dieta_PlatilloListQuery == null) {
-                QueryBuilder<Platillo> queryBuilder = queryBuilder();
-                queryBuilder.where(Properties.IdDieta.eq(null));
-                dieta_PlatilloListQuery = queryBuilder.build();
-            }
-        }
-        Query<Platillo> query = dieta_PlatilloListQuery.forCurrentThread();
-        query.setParameter(0, idDieta);
-        return query.list();
-    }
-
-    private String selectDeep;
-
-    protected String getSelectDeep() {
-        if (selectDeep == null) {
-            StringBuilder builder = new StringBuilder("SELECT ");
-            SqlUtils.appendColumns(builder, "T", getAllColumns());
-            builder.append(',');
-            SqlUtils.appendColumns(builder, "T0", daoSession.getDietaDao().getAllColumns());
-            builder.append(" FROM PLATILLO T");
-            builder.append(" LEFT JOIN DIETA T0 ON T.\"ID_DIETA\"=T0.\"_id\"");
-            builder.append(' ');
-            selectDeep = builder.toString();
-        }
-        return selectDeep;
-    }
-    
-    protected Platillo loadCurrentDeep(Cursor cursor, boolean lock) {
-        Platillo entity = loadCurrent(cursor, 0, lock);
-        int offset = getAllColumns().length;
-
-        Dieta dieta = loadCurrentOther(daoSession.getDietaDao(), cursor, offset);
-         if(dieta != null) {
-            entity.setDieta(dieta);
-        }
-
-        return entity;    
-    }
-
-    public Platillo loadDeep(Long key) {
-        assertSinglePk();
-        if (key == null) {
-            return null;
-        }
-
-        StringBuilder builder = new StringBuilder(getSelectDeep());
-        builder.append("WHERE ");
-        SqlUtils.appendColumnsEqValue(builder, "T", getPkColumns());
-        String sql = builder.toString();
-        
-        String[] keyArray = new String[] { key.toString() };
-        Cursor cursor = db.rawQuery(sql, keyArray);
-        
-        try {
-            boolean available = cursor.moveToFirst();
-            if (!available) {
-                return null;
-            } else if (!cursor.isLast()) {
-                throw new IllegalStateException("Expected unique result, but count was " + cursor.getCount());
-            }
-            return loadCurrentDeep(cursor, true);
-        } finally {
-            cursor.close();
-        }
-    }
-    
-    /** Reads all available rows from the given cursor and returns a list of new ImageTO objects. */
-    public List<Platillo> loadAllDeepFromCursor(Cursor cursor) {
-        int count = cursor.getCount();
-        List<Platillo> list = new ArrayList<Platillo>(count);
-        
-        if (cursor.moveToFirst()) {
-            if (identityScope != null) {
-                identityScope.lock();
-                identityScope.reserveRoom(count);
-            }
-            try {
-                do {
-                    list.add(loadCurrentDeep(cursor, false));
-                } while (cursor.moveToNext());
-            } finally {
-                if (identityScope != null) {
-                    identityScope.unlock();
-                }
-            }
-        }
-        return list;
-    }
-    
-    protected List<Platillo> loadDeepAllAndCloseCursor(Cursor cursor) {
-        try {
-            return loadAllDeepFromCursor(cursor);
-        } finally {
-            cursor.close();
-        }
-    }
-    
-
-    /** A raw-style query where you can pass any WHERE clause and arguments. */
-    public List<Platillo> queryDeep(String where, String... selectionArg) {
-        Cursor cursor = db.rawQuery(getSelectDeep() + where, selectionArg);
-        return loadDeepAllAndCloseCursor(cursor);
-    }
- 
 }

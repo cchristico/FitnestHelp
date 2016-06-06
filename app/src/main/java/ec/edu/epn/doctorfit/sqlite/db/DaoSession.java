@@ -14,7 +14,6 @@ import ec.edu.epn.doctorfit.sqlite.db.Estado;
 import ec.edu.epn.doctorfit.sqlite.db.EstadoDeseado;
 import ec.edu.epn.doctorfit.sqlite.db.AlimentacionSedentarismo;
 import ec.edu.epn.doctorfit.sqlite.db.Consejo;
-import ec.edu.epn.doctorfit.sqlite.db.Dieta;
 import ec.edu.epn.doctorfit.sqlite.db.Platillo;
 import ec.edu.epn.doctorfit.sqlite.db.Alimento;
 
@@ -23,7 +22,6 @@ import ec.edu.epn.doctorfit.sqlite.db.EstadoDao;
 import ec.edu.epn.doctorfit.sqlite.db.EstadoDeseadoDao;
 import ec.edu.epn.doctorfit.sqlite.db.AlimentacionSedentarismoDao;
 import ec.edu.epn.doctorfit.sqlite.db.ConsejoDao;
-import ec.edu.epn.doctorfit.sqlite.db.DietaDao;
 import ec.edu.epn.doctorfit.sqlite.db.PlatilloDao;
 import ec.edu.epn.doctorfit.sqlite.db.AlimentoDao;
 
@@ -41,7 +39,6 @@ public class DaoSession extends AbstractDaoSession {
     private final DaoConfig estadoDeseadoDaoConfig;
     private final DaoConfig alimentacionSedentarismoDaoConfig;
     private final DaoConfig consejoDaoConfig;
-    private final DaoConfig dietaDaoConfig;
     private final DaoConfig platilloDaoConfig;
     private final DaoConfig alimentoDaoConfig;
 
@@ -50,7 +47,6 @@ public class DaoSession extends AbstractDaoSession {
     private final EstadoDeseadoDao estadoDeseadoDao;
     private final AlimentacionSedentarismoDao alimentacionSedentarismoDao;
     private final ConsejoDao consejoDao;
-    private final DietaDao dietaDao;
     private final PlatilloDao platilloDao;
     private final AlimentoDao alimentoDao;
 
@@ -73,9 +69,6 @@ public class DaoSession extends AbstractDaoSession {
         consejoDaoConfig = daoConfigMap.get(ConsejoDao.class).clone();
         consejoDaoConfig.initIdentityScope(type);
 
-        dietaDaoConfig = daoConfigMap.get(DietaDao.class).clone();
-        dietaDaoConfig.initIdentityScope(type);
-
         platilloDaoConfig = daoConfigMap.get(PlatilloDao.class).clone();
         platilloDaoConfig.initIdentityScope(type);
 
@@ -87,7 +80,6 @@ public class DaoSession extends AbstractDaoSession {
         estadoDeseadoDao = new EstadoDeseadoDao(estadoDeseadoDaoConfig, this);
         alimentacionSedentarismoDao = new AlimentacionSedentarismoDao(alimentacionSedentarismoDaoConfig, this);
         consejoDao = new ConsejoDao(consejoDaoConfig, this);
-        dietaDao = new DietaDao(dietaDaoConfig, this);
         platilloDao = new PlatilloDao(platilloDaoConfig, this);
         alimentoDao = new AlimentoDao(alimentoDaoConfig, this);
 
@@ -96,7 +88,6 @@ public class DaoSession extends AbstractDaoSession {
         registerDao(EstadoDeseado.class, estadoDeseadoDao);
         registerDao(AlimentacionSedentarismo.class, alimentacionSedentarismoDao);
         registerDao(Consejo.class, consejoDao);
-        registerDao(Dieta.class, dietaDao);
         registerDao(Platillo.class, platilloDao);
         registerDao(Alimento.class, alimentoDao);
     }
@@ -107,7 +98,6 @@ public class DaoSession extends AbstractDaoSession {
         estadoDeseadoDaoConfig.getIdentityScope().clear();
         alimentacionSedentarismoDaoConfig.getIdentityScope().clear();
         consejoDaoConfig.getIdentityScope().clear();
-        dietaDaoConfig.getIdentityScope().clear();
         platilloDaoConfig.getIdentityScope().clear();
         alimentoDaoConfig.getIdentityScope().clear();
     }
@@ -130,10 +120,6 @@ public class DaoSession extends AbstractDaoSession {
 
     public ConsejoDao getConsejoDao() {
         return consejoDao;
-    }
-
-    public DietaDao getDietaDao() {
-        return dietaDao;
     }
 
     public PlatilloDao getPlatilloDao() {
