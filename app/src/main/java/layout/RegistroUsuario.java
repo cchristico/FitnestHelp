@@ -2,7 +2,6 @@ package layout;
 
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
 import android.os.Bundle;
@@ -18,16 +17,12 @@ import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
-import ec.edu.epn.doctorfit.MainActivity;
 import ec.edu.epn.doctorfit.R;
 import ec.edu.epn.doctorfit.sqlite.db.DaoMaster;
 import ec.edu.epn.doctorfit.sqlite.db.DaoMaster.DevOpenHelper;
 import ec.edu.epn.doctorfit.sqlite.db.DaoSession;
 import ec.edu.epn.doctorfit.sqlite.db.Usuario;
 import ec.edu.epn.doctorfit.sqlite.db.UsuarioDao;
-
-import android.app.DatePickerDialog;
-import android.app.Dialog;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,6 +37,8 @@ public class RegistroUsuario extends Fragment {
     private FloatingActionButton fabContinuar;
     //las siguientes 4 lineas son para el uso del calendario
     private Button buttonFechaNacimiento;
+    private Button buttonMasculino;
+    private Button buttonFemenino;
     private int year_x, month_x, day_x;
     private static final int DIALOG_ID=0;
 
@@ -58,6 +55,7 @@ public class RegistroUsuario extends Fragment {
 
     View viewFragmentRegistro;
 
+    private boolean checked_genre = false;
     public RegistroUsuario() {
 
     }
@@ -74,18 +72,8 @@ public class RegistroUsuario extends Fragment {
         // que contenfa el fragement, es la forma de comunicar a la clase con su fragment
 
         viewFragmentRegistro = inflater.inflate(R.layout.fragment_registro_usuario, container, false);
-        //busco al objeto (btnFecha)
-
-        //  busco al objeto(fabContinuar) dentro del fragment(fragment_registro_usuario) a travez de la vista creada(viewFragmentRegistro)
-        fabContinuar = (FloatingActionButton) viewFragmentRegistro.findViewById(R.id.fabContinuar);
-        fabContinuar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mostrarSiguienteInterfaz();
-            }
-        });
 //        El siguiente metodo estará pendiente de la pulsacion del boton de fecha de nacimiento del ussuairo
-        showDataPickerOnClickButton();
+        doAnActionOnClickButton();
         //las siguientes 4 lineas son para establece la fecha actual en las variables que van a ser utilizadas para el DaataPicker en
 //        el MainActivity
         final Calendar cal = Calendar.getInstance();
@@ -198,7 +186,22 @@ public class RegistroUsuario extends Fragment {
      * para que cuando el boton de la fecha sea presionado, se muestre un calendario
      * la funcionalidad de mostrar el calendario esta implementada en el MainActivity, ya que es la base de los fragments
      */
-    public void showDataPickerOnClickButton(){
+    public void doAnActionOnClickButton(){
+        /**
+         * Esta es la  accion que se realiza cuando el FloatingActionButton del fragment_actividad_fisica_diaria es presionado
+         * busco al objeto(fabContinuar) dentro del fragment(fragment_registro_usuario) a travez de la vista creada(viewFragmentRegistro)
+         */
+        fabContinuar = (FloatingActionButton) viewFragmentRegistro.findViewById(R.id.fabContinuar);
+        fabContinuar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostrarSiguienteInterfaz();
+            }
+        });
+
+        /**
+         * Esta es la accion que se realiza cuadno el boton de fechaNacimieno del usuario es presionado
+         */
         buttonFechaNacimiento = (Button) viewFragmentRegistro.findViewById(R.id.btnFechaNacimientoUsuario);
         buttonFechaNacimiento.setOnClickListener(
                 new View.OnClickListener() {
@@ -208,5 +211,32 @@ public class RegistroUsuario extends Fragment {
                     }
                 }
         );
+
+        /**
+         * Esta es la  accion que se realiza cuando el boton de MASCULINO   del usuario es presionado
+         */
+        buttonMasculino = (Button) viewFragmentRegistro.findViewById(R.id.btnMaculino);
+        buttonMasculino.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                checked_genre =true;
+                buttonMasculino.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_checked_genre,0);
+                buttonFemenino.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+//                despues de enviar esta informacion se debe settear la variable checked_genre a 0
+            }
+        });
+        /**
+         * Esta es la  accion que se realiza cuando el boton de FEMENINO   del usuario es presionado
+         */
+        buttonFemenino = (Button) viewFragmentRegistro.findViewById(R.id.btnFemenino);
+        buttonFemenino.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                checked_genre =true;
+                buttonFemenino.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_checked_genre,0);
+                buttonMasculino.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+//                despues de enviar esta informacion se debe settear la variable checked_genre a 0
+            }
+        });
     }
 }
