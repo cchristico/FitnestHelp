@@ -1,12 +1,15 @@
 package layout;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import ec.edu.epn.doctorfit.R;
 
@@ -17,7 +20,7 @@ import ec.edu.epn.doctorfit.R;
  * to handle interaction events.
  */
 public class DietaActual extends Fragment {
-
+    private View fragmentDietaActual;
     private OnFragmentInteractionListener mListener;
 
     public DietaActual() {
@@ -28,8 +31,34 @@ public class DietaActual extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dieta_actual, container, false);
+        fragmentDietaActual = inflater.inflate(R.layout.fragment_dieta_actual, container, false);
+
+        doAnActionOnClickButton();
+        return fragmentDietaActual;
+
+    }
+
+    public void doAnActionOnClickButton() {
+        /**
+         * Esta es la  accion que se realiza cuando el FloatingActionButton del fragment_diesta_actual es presionado
+         */
+        FloatingActionButton fabSiguienteInterfaz = (FloatingActionButton) fragmentDietaActual.findViewById(R.id.fabContinuarDieta);
+        fabSiguienteInterfaz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mostrarSiguienteInterfaz();
+            }
+        });
+    }
+
+    public void mostrarSiguienteInterfaz() {
+        Activity activity = getActivity();
+        mListener.onFragmentInteraction(R.layout.fragment_estado_usuario);
+        Toast.makeText(activity, "INFORMACION ALMACENADA", Toast.LENGTH_SHORT).show();
     }
 
     @Override
