@@ -73,6 +73,16 @@ DietaActual.OnFragmentInteractionListener{
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        databaseName = getResources().getString(R.string.database_name);
+        //aqui se genera el esquema o se obtiene un objoSQLiteDatabase
+        helper = new DaoMaster.DevOpenHelper(this.getApplicationContext(), databaseName, null);
+        //se habilita a la BDD para ser escrita o leida
+        db = helper.getWritableDatabase();
+        daoMaster = new DaoMaster(db);
+        daoSession = daoMaster.newSession();
+        consejoDao = daoSession.getConsejoDao();
+        alimentoDao = daoSession.getAlimentoDao();
+        platilloDao = daoSession.getPlatilloDao();
         // Verificar si existen los datos en la aplicacion, sino generarlos
         generarDatosAplicacion();
     }
@@ -123,7 +133,7 @@ DietaActual.OnFragmentInteractionListener{
                     R.id.fragment_content_main_layout,
                     homeFragment,
                     homeFragment.getTag()).commit();
-        } else if (id == R.id.nav_registro) {
+        } else if (id == R.id.nav_registro ) {
 
             RegistroUsuario registroUsuario = new RegistroUsuario();
             FragmentManager fragmentManager = getSupportFragmentManager();
@@ -275,4 +285,7 @@ DietaActual.OnFragmentInteractionListener{
             //alimentoDao.insert(new Alimento(Long id, String nombreAlimento, String aporteNutricional, float porcentajeNutricional, String tipoAlimento, long idPlatillo);
         }
     }
+   /* public boolean existeUsuario(){
+
+    }*/
 }

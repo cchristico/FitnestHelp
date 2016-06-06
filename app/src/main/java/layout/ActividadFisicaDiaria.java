@@ -177,5 +177,10 @@ public class ActividadFisicaDiaria extends Fragment {
         mListener.onFragmentInteraction(R.layout.fragment_dieta_actual);
 
     }
+    public void mostrarInterfazAnterior() {
+
+        mListener.onFragmentInteraction(R.layout.fragment_peso_actual_espectativa_usuario);
+
+    }
 
 }
