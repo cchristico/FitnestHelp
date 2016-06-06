@@ -3,9 +3,13 @@ package layout;
 
 import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +28,16 @@ import ec.edu.epn.doctorfit.sqlite.db.UsuarioDao;
  */
 public class RegistroUsuario extends Fragment {
 
+
     // TODO Elementos de la vista
+
+    //    declaramos un objeto de tipo INTERFAZ
+    private OnFragmentInteractionListener mListener;
     private FloatingActionButton fabContinuar;
 
     private Activity actividadPadre;
 
+    // Objetos del ORM
     private String databaseName;
     private DevOpenHelper helper;
     private SQLiteDatabase db;
@@ -73,11 +82,13 @@ public class RegistroUsuario extends Fragment {
     }
 
     public void mostrarSiguienteInterfaz() {
+
         //  aqui obtenemos la actividad sobre la cual se esta ejecutando el fragment
 
         actividadPadre = getActivity();
 
-        // TODO obtener los valores de la interfaz y establecerlos en el objeto usuario
+        // TODO obtener los valores de la interfaz y establecerlos en el objeto usuario, o para mejorar
+        // legibilidad mejor crear un metodo aparte, ustedes decidan
         /*
         Usuario nuevoUsuario = new Usuario();
         nuevoUsuario.setNombreUsuario();
@@ -90,5 +101,30 @@ public class RegistroUsuario extends Fragment {
         //  El Toast se ejecuta en una actividad, por tanto se debe establecer como contexto a la actividad padre del fragment
         Toast.makeText(actividadPadre, "se muestra la siguiente interfaz", Toast.LENGTH_SHORT).show();
         //EN LUGAR DEL TOAST AGREGAR EL CODIGO PARA MOSTRAR LA SIGUIENTE INTERFAZ
+
+        mListener.onFragmentInteraction(R.layout.fragment_peso_actual_espectativa_usuario);
+
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(int uri);
     }
 }

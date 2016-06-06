@@ -47,8 +47,10 @@
     <string name="btnGanarPeso">Gana peso de forma sana \n ganando masa muscular</string>
     <string name="btnIngresarUsuario">Crear Plan</string>
     <string name="btnSigueinte">Siguiente</string>
-
-
+    <string name="btnNoMuyActivo">NO MUY ACTIVO</string>
+    <string name="btnMedianamenteActivo">MEDIANAMENTE ACTIVO</string>
+    <string name="btnActivo">ACTIVO</string>
+    <string name="btnMuyActivo">MUY ACTIVO</string>
 
 
 

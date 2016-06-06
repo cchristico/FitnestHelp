@@ -1,5 +1,6 @@
 package ec.edu.epn.doctorfit;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
@@ -14,13 +15,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import layout.ActividadFisicaDiaria;
 import layout.EstadoUsuario;
 import layout.ProgresoUsuario;
 import layout.RecetasUsuario;
 import layout.RegistroUsuario;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, RegistroUsuario.OnFragmentInteractionListener {
 
 
     @Override
@@ -48,7 +50,6 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
-
 
 
     @Override
@@ -133,5 +134,25 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(int uri) {
+        if (uri == R.layout.fragment_actividad_fisica_diaria) {
+            ActividadFisicaDiaria actividadFisicaDiaria = new ActividadFisicaDiaria();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(
+                    R.id.fragment_content_main_layout,
+                    actividadFisicaDiaria,
+                    actividadFisicaDiaria.getTag()).commit();
+        } else if (uri == R.layout.fragment_peso_actual_espectativa_usuario) {
+            ProgresoUsuario progresoUsuario = new ProgresoUsuario();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(
+                    R.id.fragment_content_main_layout,
+                    progresoUsuario,
+                    progresoUsuario.getTag()).commit();
+        }
+
     }
 }

@@ -8,6 +8,10 @@
     >
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"/>
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -23,12 +27,14 @@
             android:id="@+id/btnFemenino"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#c9fffefe"
             android:text="@string/btnFemenino" />
 
         <Button
             android:id="@+id/btnMaculino"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#c9fffefe"
             android:text="@string/btnMasculino" />
     </LinearLayout>
 
@@ -66,6 +72,7 @@
         <NumberPicker
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#c9fffefe"
             android:layout_gravity="center"></NumberPicker>
         <TextView
             android:layout_width="wrap_content"
@@ -85,6 +92,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:background="#c9fffefe"
         android:text="-- / -- / ----"/>
 
     <android.support.design.widget.FloatingActionButton
@@ -93,6 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        android:background="#c9fffefe"
         android:src="@drawable/ic_continuar"
         android:onClick="mostrarSiguienteInterfaz"/>
 
