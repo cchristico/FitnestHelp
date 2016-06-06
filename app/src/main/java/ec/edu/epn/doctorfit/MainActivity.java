@@ -1,5 +1,8 @@
 package ec.edu.epn.doctorfit;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
@@ -10,7 +13,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 import layout.ActividadFisicaDiaria;
 import layout.EstadoUsuario;
@@ -22,7 +29,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         RegistroUsuario.OnFragmentInteractionListener,
         ProgresoUsuario.OnFragmentInteractionListener {
-
+    private int year_x, month_x, day_x;
+    static final int DIALOG_ID = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +133,7 @@ public class MainActivity extends AppCompatActivity
     /**
      * Implementacion del metodo de la interfaz onFragmentInteraction creda en cada fragmentLayout para
      * la interaccion entre el MainActivity y los fragmentLayout
+     *
      * @param uri entero que corresponde al layout que se requiere abrir, permite la interaccion entre layouts
      */
     @Override
@@ -146,4 +155,57 @@ public class MainActivity extends AppCompatActivity
         }
 
     }
+
+    /**
+     * Se define la implementacion del constructor OnFragmentInteraccion de la inerfaz que MainAtivity Implementa
+     *
+     * @param uri  R.layout.fragmento, es el valor entero que corresponde a cada fragmento
+     * @param anio el anio actual establecido en el fragmento
+     * @param mes  el mes actual establecido en el fragmento
+     * @param dia  el dia actual establecido en el fragmento
+     */
+    public void onFragmentInteraction(int uri, int anio, int mes, int dia) {
+
+        if (uri == R.layout.fragment_registro_usuario) {
+            this.year_x = anio;
+            this.month_x = mes;
+            this.day_x = dia;
+            //creamos el Dialogo que contendra el DatePicker
+            showDialog(0);
+
+        }
+    }
+
+    /**
+     * Sobreescritrua del metodo OnCreteDialog del objeto Dialog
+     * que sera invocado mediante showDialog
+     *
+     * @param id el Id del dialogo
+     * @return
+     */
+    @Override
+    public Dialog onCreateDialog(int id) {
+        if (id == DIALOG_ID)
+            //retornamos un DatePickerDialog en el contexto MainActivity
+            return new DatePickerDialog(this, dpDialogOnDataSetListener, year_x, month_x, day_x);
+        return null;
+    }
+
+
+    /**
+     * Se establece que va a hacer el DataPickerDialog cuando este sea invocado
+     * en este caso vamos a mostrar un Toast con la fecha actual
+     */
+    DatePickerDialog.OnDateSetListener dpDialogOnDataSetListener =
+            new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    year_x = year;
+                    month_x = monthOfYear + 1;
+                    day_x = dayOfMonth;
+                    //se establece estos valores en el texto del botton de escoger la fecha del usuario
+                    Button buttonFechaNacimientoUsuario = (Button) findViewById(R.id.btnFechaNacimientoUsuario);
+                    buttonFechaNacimientoUsuario.setText(year_x+" / "+month_x +" / "+day_x);
+                }
+            };
 }
