@@ -2,9 +2,13 @@ package layout;
 
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +21,8 @@ import ec.edu.epn.doctorfit.R;
  * A simple {@link Fragment} subclass.
  */
 public class RegistroUsuario extends Fragment {
-
+//    declaramos un objeto de tipo INTERFAZ
+    OnFragmentInteractionListener mListener;
     private FloatingActionButton fabContinuar;
     private Activity actividadPadre;
 
@@ -50,11 +55,30 @@ public class RegistroUsuario extends Fragment {
     }
 
     public void mostrarSiguienteInterfaz() {
-//        aqui obtenemos la actividad sobre la cual se esta ejecutando el fragment
 
-        actividadPadre = getActivity();
-//        El Toast se ejecuta en una actividad, por tanto se debe establecer como contexto a la actividad padre del fragment
-        Toast.makeText(actividadPadre, "se muestra la siguiente interfaz", Toast.LENGTH_SHORT).show();
-        //EN LUGAR DEL TOAST AGREGAR EL CODIGO PARA MOSTRAR LA SIGUIENTE INTERFAZ
+        mListener.onFragmentInteraction(R.layout.fragment_peso_actual_espectativa_usuario);
+
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(int uri);
     }
 }
