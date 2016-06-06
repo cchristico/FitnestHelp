@@ -65,8 +65,7 @@ public class ActividadFisicaDiaria extends Fragment {
 
                 mostrarSiguienteInterfaz();
 
-                Activity activity = getActivity();
-                Toast.makeText(activity, "INFORMACION ALMACENADA", Toast.LENGTH_SHORT).show();
+//                Activity activity = getActivity();
             }
         });
 

@@ -45,8 +45,7 @@ public class MainActivity extends AppCompatActivity
         ProgresoUsuario.OnFragmentInteractionListener,
         ActividadFisicaDiaria.OnFragmentInteractionListener,
         DietaActual.OnFragmentInteractionListener,
-        IngresoUsuario.OnFragmentInteractionListener
-{
+        IngresoUsuario.OnFragmentInteractionListener {
     private int year_x, month_x, day_x;
     static final int DIALOG_ID = 0;
 
@@ -220,13 +219,20 @@ public class MainActivity extends AppCompatActivity
                     R.id.fragment_content_main_layout,
                     dietaActual,
                     dietaActual.getTag()).commit();
-        }else if (uri == R.layout.fragment_registro_usuario) {
+        } else if (uri == R.layout.fragment_registro_usuario) {
             RegistroUsuario registroUsuario = new RegistroUsuario();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(
                     R.id.fragment_content_main_layout,
                     registroUsuario,
                     registroUsuario.getTag()).commit();
+        }else if (uri == R.layout.fragment_estado_usuario) {
+            EstadoUsuario estadoUsuario = new EstadoUsuario();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(
+                    R.id.fragment_content_main_layout,
+                    estadoUsuario,
+                    estadoUsuario.getTag()).commit();
         }
 
     }
@@ -317,24 +323,24 @@ public class MainActivity extends AppCompatActivity
             platilloDao.insert(new Platillo((long) 5, "Empanada de carne"));
 
             // ALIMENTO
-            alimentoDao.insert(new Alimento((long) 1, "Pollo", null, 130, null, (long)1));
-            alimentoDao.insert(new Alimento((long) 2, "Zanahoria", null, 37, null, (long)1));
-            alimentoDao.insert(new Alimento((long) 3, "Pollo", null, 24, null, (long)1));
+            alimentoDao.insert(new Alimento((long) 1, "Pollo", null, 130, null, (long) 1));
+            alimentoDao.insert(new Alimento((long) 2, "Zanahoria", null, 37, null, (long) 1));
+            alimentoDao.insert(new Alimento((long) 3, "Pollo", null, 24, null, (long) 1));
 
-            alimentoDao.insert(new Alimento((long) 4, "Papa", null, 90, null, (long)2));
-            alimentoDao.insert(new Alimento((long) 5, "Salmón", null, 172, null, (long)2));
+            alimentoDao.insert(new Alimento((long) 4, "Papa", null, 90, null, (long) 2));
+            alimentoDao.insert(new Alimento((long) 5, "Salmón", null, 172, null, (long) 2));
 
-            alimentoDao.insert(new Alimento((long) 6, "Atún", null, 144, null, (long)3));
-            alimentoDao.insert(new Alimento((long) 7, "Tomate", null, 22, null, (long)3));
-            alimentoDao.insert(new Alimento((long) 8, "lechuga", null, 18, null, (long)3));
-            alimentoDao.insert(new Alimento((long) 9, "Choclo", null, 96, null, (long)3));
+            alimentoDao.insert(new Alimento((long) 6, "Atún", null, 144, null, (long) 3));
+            alimentoDao.insert(new Alimento((long) 7, "Tomate", null, 22, null, (long) 3));
+            alimentoDao.insert(new Alimento((long) 8, "lechuga", null, 18, null, (long) 3));
+            alimentoDao.insert(new Alimento((long) 9, "Choclo", null, 96, null, (long) 3));
 
-            alimentoDao.insert(new Alimento((long) 10, "Macarrones", null, 107, null, (long)4));
-            alimentoDao.insert(new Alimento((long) 11, "Salsa de Tomate", null, 86, null, (long)4));
+            alimentoDao.insert(new Alimento((long) 10, "Macarrones", null, 107, null, (long) 4));
+            alimentoDao.insert(new Alimento((long) 11, "Salsa de Tomate", null, 86, null, (long) 4));
 
-            alimentoDao.insert(new Alimento((long) 12, "Carne de res", null, 92, null, (long)5));
-            alimentoDao.insert(new Alimento((long) 13, "Arveja", null, 81, null, (long)5));
-            alimentoDao.insert(new Alimento((long) 13, "Harina", null, 364, null, (long)5));
+            alimentoDao.insert(new Alimento((long) 12, "Carne de res", null, 92, null, (long) 5));
+            alimentoDao.insert(new Alimento((long) 13, "Arveja", null, 81, null, (long) 5));
+            alimentoDao.insert(new Alimento((long) 13, "Harina", null, 364, null, (long) 5));
         }
     }
 
