@@ -21,7 +21,7 @@ import layout.RegistroUsuario;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private FloatingActionButton fabContinuar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabContinuar);
+
      /*   fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,10 +49,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    public void mostrarSiguienteInterfaz(View view) {
-        fabContinuar = (FloatingActionButton) findViewById(R.id.fabContinuar);
-        Toast.makeText(this, "se muestra la siguiente interfaz", Toast.LENGTH_SHORT).show();
-    }
+
 
     @Override
     public void onBackPressed() {
