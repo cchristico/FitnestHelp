@@ -1,13 +1,80 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="layout.ProgresoUsuario">
+    tools:context="layout.ProgresoUsuario"
+    android:orientation="vertical"
+    android:background="@drawable/fondo_doctorfit"
+
+    >
 
     <!-- TODO: Update blank fragment layout -->
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:layout_gravity="center_horizontal"
+        android:textSize="6mm"
+        android:textColor="#000000" />
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="PROGRESO" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_blank_fragment"
+        android:layout_gravity="center_horizontal"
+        android:textSize="4mm"
+        />
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+  android:layout_weight="0.92">
+
+
+    <Button
+        android:layout_width="251dp"
+        android:layout_height="70dp"
+        android:text="@string/btnPerderPeso"
+        android:layout_gravity="center_horizontal|top"
+        android:background="#c9fffefe" />
+
+    <Button
+        android:layout_width="251dp"
+        android:layout_height="66dp"
+        android:text="@string/btnGanarPeso"
+        android:layout_gravity="center"
+        android:background="#c9fffefe" />
+
+    <Button
+        android:layout_width="251dp"
+        android:layout_height="71dp"
+        android:text="@string/btnMantenerPeso"
+        android:layout_gravity="center_horizontal|bottom" />
+        />
+
 
 </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.82">
+
+        <Spinner
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lblUsuarioNuevo"
+            android:textSize="3.5mm"
+            android:layout_gravity="center_horizontal|top" />
+    </FrameLayout>
+
+
+
+
+
+
+</LinearLayout>

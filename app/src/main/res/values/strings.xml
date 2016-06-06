@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">doctorfit</string>
+    <string name="app_name">DoctorFit</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -15,9 +15,11 @@
     <string name="lblContextura">Selecciona tu contextura</string>
     <string name="lblPesoIdeal">¿Cuánto te gustaría pesar?</string>
     <string name="lblRutina">Describe tu rutina diaria</string>
+    <string name="lblUsuarioNuevo">¿Ya tienes tu plan?</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">¿Eres nuevo? Elije tu objetivo:</string>
 
 
     <!--ETIQUETAS DE TEXTVIEW TABLA USUARIO-->
@@ -29,10 +31,15 @@
     <string name="lblfechaNacimiento">FECHA DE NACIMIENTO: </string>
 
     <!--TEXTO DE BOTONES-->
+
     <string name="btnCrear">CREAR</string>
     <string name="btnCancelar">CANCELAR</string>
     <string name="btnMasculino">MASCULINO</string>
     <string name="btnFemenino">FEMENINO</string>
+    <string name="btnPerderPeso">Pierde peso de forma sana \n reduciendo calorías</string>
+    <string name="btnMantenerPeso">Mantén tu peso \n disfrutando de una dieta sana</string>
+    <string name="btnGanarPeso">Gana peso de forma sana \n ganando masa muscular</string>
+
 
 
 </resources>
