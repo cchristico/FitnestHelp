@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment {
         daoSession = daoMaster.newSession();
         consejoDao = daoSession.getConsejoDao();
         //crear la informacion, este metodo solo se realizará una vez para almacenar la informacion
-        generarConsejos();
+        //generarConsejos();
         //llamar al matodo para traer los datos de la BDD
         obtenerConsejosBdd();
         return viewFragmentHome;
@@ -66,6 +66,7 @@ public class HomeFragment extends Fragment {
     /**
      * Metodo que llena la tabla con informacion solo si esta vacia
      */
+    /*
     public void generarConsejos() {
         consejoList = consejoDao.queryBuilder().list();
 
@@ -91,7 +92,7 @@ public class HomeFragment extends Fragment {
             }
         }
     }
-
+    */
     /**
      * Metodo que devuelve los datos de la tabla Consejo
      */
