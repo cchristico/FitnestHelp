@@ -1,5 +1,6 @@
 package ec.edu.epn.doctorfit;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -14,8 +15,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -60,6 +63,11 @@ public class MainActivity extends AppCompatActivity
     private AlimentoDao alimentoDao;
     private ConsejoDao consejoDao;
     private UsuarioDao usuarioDao;
+    private EditText txtPesoActual;
+    private EditText txtPesoDeseado;
+    private int objetivoDeseado;
+    private Button btnObjetivodeado;
+    private Activity actividad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +89,7 @@ public class MainActivity extends AppCompatActivity
         //aqui se genera el esquema o se obtiene un objoSQLiteDatabase
         helper = new DaoMaster.DevOpenHelper(this.getApplicationContext(), databaseName, null);
         //se habilita a la BDD para ser escrita o leida
-        db = helper.getWritableDatabase();
+ //       db = helper.getWritableDatabase();
         daoMaster = new DaoMaster(db);
         daoSession = daoMaster.newSession();
         consejoDao = daoSession.getConsejoDao();
@@ -89,7 +97,7 @@ public class MainActivity extends AppCompatActivity
         platilloDao = daoSession.getPlatilloDao();
         usuarioDao = daoSession.getUsuarioDao();
         // Verificar si existen los datos en la aplicacion, sino generarlos
-//        usuarioDao.deleteAll();
+        //usuarioDao.deleteAll();
         generarDatosAplicacion();
         if (!existeUsuario()) {
             IngresoUsuario ingresoUsuario = new IngresoUsuario();
@@ -347,4 +355,56 @@ public class MainActivity extends AppCompatActivity
         }
 
     }
+
+    public void ValidadPesoDeseado()
+    {
+        double pesoActual;
+        double pesoDeseado;
+        pesoActual = Double.parseDouble (txtPesoActual.findViewById(R.id.txtPesoActual).toString());
+        pesoDeseado = Double.parseDouble (txtPesoDeseado.findViewById(R.id.txtPesoIdeal).toString());
+        actividad = new Activity();
+        switch (objetivoDeseado)
+        {
+            case 1:
+                if (pesoDeseado>pesoActual)
+                {
+
+                    Toast.makeText(actividad,"Usted Selecciono perder peso",Toast.LENGTH_SHORT);
+                }
+                break;
+            case 2:
+                if(pesoDeseado<pesoActual)
+                {
+                    Toast.makeText(actividad,"Usted Selecciono ganar peso",Toast.LENGTH_SHORT);
+                }
+                break;
+            case 3:
+                if(pesoActual!=pesoDeseado)
+                {
+
+                    Toast.makeText(actividad,"Usted Selecciono mantener peso",Toast.LENGTH_SHORT);
+                }
+                break;
+        }
+    }
+
+    public void ObjetivoDeseado(View view){
+
+        Button btnTipoDieta = (Button)view;
+        if(btnTipoDieta.getText().equals("Pierde peso de forma sana \n reduciendo calorías"))
+        {
+            objetivoDeseado = 1;
+        }
+        else if(btnTipoDieta.getText().equals("Mantén tu peso \n disfrutando de una dieta sana"))
+        {
+            objetivoDeseado = 2;
+        }
+        else if(btnTipoDieta.getText().equals("Gana peso de forma sana \n ganando masa muscular"))
+        {
+            objetivoDeseado = 3;
+        }
+    }
+
+
+
 }

@@ -26,38 +26,27 @@ public class Validaciones {
         actividad = new Activity();
         switch (objetivoDeseado)
         {
-
             case 1:
-
-
                 if (pesoDeseado>pesoActual)
                 {
 
                     Toast.makeText(actividad,"Usted Selecciono perder peso",Toast.LENGTH_SHORT);
                 }
                 break;
-
             case 2:
                 if(pesoDeseado<pesoActual)
                 {
-
                     Toast.makeText(actividad,"Usted Selecciono ganar peso",Toast.LENGTH_SHORT);
                 }
-
                 break;
             case 3:
-
                 if(pesoActual!=pesoDeseado)
                 {
 
                     Toast.makeText(actividad,"Usted Selecciono mantener peso",Toast.LENGTH_SHORT);
                 }
-
                 break;
-
         }
-
-
     }
 
 public void ObjetivoDeseado(View view){
