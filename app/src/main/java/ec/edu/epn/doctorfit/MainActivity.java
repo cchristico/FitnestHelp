@@ -270,7 +270,17 @@ DietaActual.OnFragmentInteractionListener{
             consejoDao.insert(new Consejo((long) 10, "No hay alimentos “buenos” o “malos”, sólo dietas buenas o malas. No se sienta culpable de los alimentos que le gustan, simplemente tómelos con moderación y escoja otros alimentos que le proporcionen el equilibrio y la variedad que necesita para conseguir una buena salud."));
 
             // PLATILLO
-            //platilloDao.insert(new Platillo(Long id, String nombrePlatillo, long idDieta));
+            platilloDao.insert(new Platillo((long) 1, "Cevichocho"));
+            platilloDao.insert(new Platillo((long) 2, "Cevichocho"));
+            platilloDao.insert(new Platillo((long) 3, "Cevichocho"));
+            platilloDao.insert(new Platillo((long) 4, "Cevichocho"));
+            platilloDao.insert(new Platillo((long) 5, "Cevichocho"));
+            platilloDao.insert(new Platillo((long) 6, "Cevichocho"));
+            platilloDao.insert(new Platillo((long) 7, "Cevichocho"));
+            platilloDao.insert(new Platillo((long) 8, "Cevichocho"));
+            platilloDao.insert(new Platillo((long) 9, "Cevichocho"));
+            platilloDao.insert(new Platillo((long) 10, "Cevichocho"));
+
             // ALIMENTO
             //alimentoDao.insert(new Alimento(Long id, String nombreAlimento, String aporteNutricional, float porcentajeNutricional, String tipoAlimento, long idPlatillo);
         }
