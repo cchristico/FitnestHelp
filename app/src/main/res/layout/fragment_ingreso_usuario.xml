@@ -10,12 +10,7 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:layout_gravity="center_horizontal"
-        android:textSize="6mm"
-        android:textColor="#000000" />
+  
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
