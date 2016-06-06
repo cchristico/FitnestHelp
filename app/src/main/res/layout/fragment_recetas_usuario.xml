@@ -1,20 +1,35 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="layout.RecetasUsuario">
+    android:orientation="vertical"
+    tools:context="layout.RecetasUsuario"
+    android:weightSum="1"
+    android:background="@drawable/dieta_menu">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="RECETAS" />
-
-    <ImageView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
-        android:layout_gravity="left|top" />
+        android:layout_weight="0.08">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lblMenu"
+            android:layout_gravity="center"
+            android:textSize="4mm"
+            android:textColor="#07a4ec" />
+
+    </FrameLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="291dp"
+        android:id="@+id/listView"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.66" />
 
 
-</FrameLayout>
+</LinearLayout>

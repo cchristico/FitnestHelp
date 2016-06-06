@@ -30,6 +30,7 @@
     <string name="lblPesoActual">¿Cuánto pesas actualmente?:</string>
     <string name="lblPesoDeseado">¿Cuál es tu peso ideal?:</string>
     <string name="lblUnidadPeso">kg:</string>
+    <string name="lblMenu">Menú</string>
 
     <!--TEXTO DE BOTONES-->
     <string name="btncrear">CREAR</string>
