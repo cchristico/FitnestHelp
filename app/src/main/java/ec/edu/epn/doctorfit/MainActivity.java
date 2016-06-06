@@ -3,6 +3,7 @@ package ec.edu.epn.doctorfit;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 import layout.ActividadFisicaDiaria;
+import layout.DietaActual;
 import layout.EstadoUsuario;
 import layout.HomeFragment;
 import layout.ProgresoUsuario;
@@ -28,7 +30,9 @@ import layout.RegistroUsuario;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         RegistroUsuario.OnFragmentInteractionListener,
-        ProgresoUsuario.OnFragmentInteractionListener {
+        ProgresoUsuario.OnFragmentInteractionListener,
+        ActividadFisicaDiaria.OnFragmentInteractionListener,
+DietaActual.OnFragmentInteractionListener{
     private int year_x, month_x, day_x;
     static final int DIALOG_ID = 0;
 
@@ -152,6 +156,13 @@ public class MainActivity extends AppCompatActivity
                     R.id.fragment_content_main_layout,
                     progresoUsuario,
                     progresoUsuario.getTag()).commit();
+        }else if(uri==R.layout.fragment_dieta_actual){
+            DietaActual dietaActual = new DietaActual();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(
+                    R.id.fragment_content_main_layout,
+                    dietaActual,
+                    dietaActual.getTag()).commit();
         }
 
     }
@@ -208,4 +219,9 @@ public class MainActivity extends AppCompatActivity
 //                    buttonFechaNacimientoUsuario.setText(year_x+" / "+month_x +" / "+day_x);
                 }
             };
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
 }

@@ -37,6 +37,7 @@
     <string name="lblConsejoDelDia">Consejo del dia:</string>
     <string name="lblActividadFisica">Activida Física diaria?</string>
     <string name="lblAnios">años </string>
+    <string name="lblDietaActual">Cual es tu dieta actual? </string>
 
 
     <!--TEXTO DE BOTONES-->
@@ -54,6 +55,8 @@
     <string name="btnMedianamenteActivo">MEDIANAMENTE ACTIVO</string>
     <string name="btnActivo">ACTIVO</string>
     <string name="btnMuyActivo">MUY ACTIVO</string>
+    <string name="btnDietaBalanceada">DIETA BALANCEADA</string>
+    <string name="btnComidaChatarra">COMIDA CHATARRA</string>
 
 
 </resources>
