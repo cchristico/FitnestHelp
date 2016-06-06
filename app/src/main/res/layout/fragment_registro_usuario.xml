@@ -103,7 +103,7 @@
         android:layout_margin="@dimen/fab_margin"
         android:background="#c9fffefe"
         android:src="@drawable/ic_continuar"
-        android:onClick="mostrarSiguienteInterfaz"/>
+        />
 
 
 </LinearLayout>
