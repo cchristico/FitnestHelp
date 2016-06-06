@@ -1,5 +1,8 @@
 package ec.edu.epn.doctorfit;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
@@ -10,7 +13,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.DatePicker;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 import layout.ActividadFisicaDiaria;
 import layout.EstadoUsuario;
@@ -22,7 +28,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         RegistroUsuario.OnFragmentInteractionListener,
         ProgresoUsuario.OnFragmentInteractionListener {
-
+    private int year_x, month_x, day_x;
+    static final int DIALOG_ID = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +132,7 @@ public class MainActivity extends AppCompatActivity
     /**
      * Implementacion del metodo de la interfaz onFragmentInteraction creda en cada fragmentLayout para
      * la interaccion entre el MainActivity y los fragmentLayout
+     *
      * @param uri entero que corresponde al layout que se requiere abrir, permite la interaccion entre layouts
      */
     @Override
@@ -146,4 +154,36 @@ public class MainActivity extends AppCompatActivity
         }
 
     }
+
+    public void onFragmentInteraction(int uri, int anio, int mes, int dia) {
+
+        if (uri == R.layout.fragment_registro_usuario) {
+            this.year_x=anio;
+            this.month_x=mes;
+            this.day_x=dia;
+            //creamos el Dialogo
+            showDialog(0);
+
+        }
+    }
+
+    @Override
+    public Dialog onCreateDialog(int id) {
+        if (id == 0)
+            return new DatePickerDialog(this, dpDialogOnDataSetListener, year_x, month_x, day_x);
+        return null;
+    }
+
+
+    DatePickerDialog.OnDateSetListener dpDialogOnDataSetListener =
+            new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    year_x = year;
+                    month_x = monthOfYear + 1;
+                    day_x = dayOfMonth;
+                    Toast.makeText(MainActivity.this, year_x + " / " + month_x + " / " + day_x, Toast.LENGTH_SHORT).show();
+
+                }
+            };
 }

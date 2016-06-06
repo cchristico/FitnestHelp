@@ -2,17 +2,16 @@ package layout;
 
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.Iterator;
@@ -26,6 +25,9 @@ import ec.edu.epn.doctorfit.sqlite.db.DaoSession;
 import ec.edu.epn.doctorfit.sqlite.db.Usuario;
 import ec.edu.epn.doctorfit.sqlite.db.UsuarioDao;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -37,6 +39,10 @@ public class RegistroUsuario extends Fragment {
     //    declaramos un objeto de tipo INTERFAZ
     private OnFragmentInteractionListener mListener;
     private FloatingActionButton fabContinuar;
+    //las siguientes tres lineas son para el uso del calendario
+    private Button buttonFechaNacimiento;
+    private int year_x, month_x, day_x;
+    static final int DIALOG_ID=0;
 
     private Activity actividadPadre;
 
@@ -47,6 +53,8 @@ public class RegistroUsuario extends Fragment {
     private DaoMaster daoMaster;
     private DaoSession daoSession;
     private UsuarioDao usuarioDao;
+
+    View viewFragmentRegistro;
 
     public RegistroUsuario() {
 
@@ -63,17 +71,19 @@ public class RegistroUsuario extends Fragment {
         // Aniado un objeto Tipo vista en donde voy a almacenar un inflater
         // que contenfa el fragement, es la forma de comunicar a la clase con su fragment
 
-        View viewFragmentRegistro = inflater.inflate(R.layout.fragment_registro_usuario, container, false);
+        viewFragmentRegistro = inflater.inflate(R.layout.fragment_registro_usuario, container, false);
+        //busco al objeto (btnFecha)
+
         //  busco al objeto(fabContinuar) dentro del fragment(fragment_registro_usuario) a travez de la vista creada(viewFragmentRegistro)
         fabContinuar = (FloatingActionButton) viewFragmentRegistro.findViewById(R.id.fabContinuar);
-
         fabContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mostrarSiguienteInterfaz();
             }
         });
-
+//        El siguiente metodo estará pendiente de la pulsacion del boton de fecha de nacimiento del ussuairo
+        showDataPickerOnClickButton();
         // Instanciando recursos de la bd
         databaseName = getResources().getString(R.string.database_name);
         helper = new DevOpenHelper(getActivity().getApplicationContext(), databaseName, null);
@@ -83,6 +93,8 @@ public class RegistroUsuario extends Fragment {
         usuarioDao = daoSession.getUsuarioDao();
 
         // TODO Instanciando elementos de view (falta)
+
+
 
         return viewFragmentRegistro;
 
@@ -157,7 +169,11 @@ public class RegistroUsuario extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(int uri);
+        //este metodo permite pasar los valores del anio actual al MainActivity
+        void onFragmentInteraction(int uri,int anio, int mes, int dia);
     }
+
+
 
     private void printList(List list){
 
@@ -166,5 +182,17 @@ public class RegistroUsuario extends Fragment {
             Usuario usuario = (Usuario)iter.next();
             System.out.println(usuario.getNombreUsuario() + " " + usuario.getSexo());
         }
+    }
+
+    public void showDataPickerOnClickButton(){
+        buttonFechaNacimiento = (Button) viewFragmentRegistro.findViewById(R.id.btnFechaNacimientoUsuario);
+        buttonFechaNacimiento.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mListener.onFragmentInteraction(R.layout.fragment_registro_usuario, year_x, month_x, day_x);
+                    }
+                }
+        );
     }
 }
