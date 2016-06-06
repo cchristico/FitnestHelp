@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -40,7 +41,7 @@ public class RegistroUsuario extends Fragment {
     private Button buttonMasculino;
     private Button buttonFemenino;
     private int year_x, month_x, day_x;
-    private static final int DIALOG_ID=0;
+    private static final int DIALOG_ID = 0;
 
 
     private Activity actividadPadre;
@@ -56,6 +57,8 @@ public class RegistroUsuario extends Fragment {
     View viewFragmentRegistro;
 
     private boolean checked_genre = false;
+    private String sexo = "";
+
     public RegistroUsuario() {
 
     }
@@ -77,9 +80,9 @@ public class RegistroUsuario extends Fragment {
         //las siguientes 4 lineas son para establece la fecha actual en las variables que van a ser utilizadas para el DaataPicker en
 //        el MainActivity
         final Calendar cal = Calendar.getInstance();
-        year_x=cal.get(Calendar.YEAR);
-        month_x=cal.get(Calendar.MONTH);
-        day_x= cal.get(Calendar.DAY_OF_MONTH);
+        year_x = cal.get(Calendar.YEAR);
+        month_x = cal.get(Calendar.MONTH);
+        day_x = cal.get(Calendar.DAY_OF_MONTH);
 
         // Instanciando recursos de la bd
         databaseName = getResources().getString(R.string.database_name);
@@ -92,7 +95,6 @@ public class RegistroUsuario extends Fragment {
         usuarioDao = daoSession.getUsuarioDao();
 
         // TODO Instanciando elementos de view (falta)
-
 
 
         return viewFragmentRegistro;
@@ -168,17 +170,17 @@ public class RegistroUsuario extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(int uri);
+
         //este metodo permite pasar los valores del anio actual al MainActivity
-        void onFragmentInteraction(int uri,int anio, int mes, int dia);
+        void onFragmentInteraction(int uri, int anio, int mes, int dia);
     }
 
 
-
-    private void printList(List list){
+    private void printList(List list) {
 
         Iterator iter = list.iterator();
-        while (iter.hasNext()){
-            Usuario usuario = (Usuario)iter.next();
+        while (iter.hasNext()) {
+            Usuario usuario = (Usuario) iter.next();
             System.out.println(usuario.getNombreUsuario() + " " + usuario.getSexo());
         }
     }
@@ -188,7 +190,7 @@ public class RegistroUsuario extends Fragment {
      * para que cuando el boton de la fecha sea presionado, se muestre un calendario
      * la funcionalidad de mostrar el calendario esta implementada en el MainActivity, ya que es la base de los fragments
      */
-    public void doAnActionOnClickButton(){
+    public void doAnActionOnClickButton() {
         /**
          * Esta es la  accion que se realiza cuando el FloatingActionButton del fragment_actividad_fisica_diaria es presionado
          * busco al objeto(fabContinuar) dentro del fragment(fragment_registro_usuario) a travez de la vista creada(viewFragmentRegistro)
@@ -197,6 +199,7 @@ public class RegistroUsuario extends Fragment {
         fabContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                insertarInformacionUsuario();
                 mostrarSiguienteInterfaz();
             }
         });
@@ -221,9 +224,9 @@ public class RegistroUsuario extends Fragment {
         buttonMasculino.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                checked_genre =true;
-                buttonMasculino.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_checked_genre,0);
-                buttonFemenino.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+                sexo = buttonMasculino.getText().toString();
+                buttonMasculino.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_checked_genre, 0);
+                buttonFemenino.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 //                despues de enviar esta informacion se debe settear la variable checked_genre a 0
             }
         });
@@ -234,11 +237,30 @@ public class RegistroUsuario extends Fragment {
         buttonFemenino.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                checked_genre =true;
-                buttonFemenino.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_checked_genre,0);
-                buttonMasculino.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+                sexo = buttonFemenino.getText().toString();
+                buttonFemenino.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_checked_genre, 0);
+                buttonMasculino.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 //                despues de enviar esta informacion se debe settear la variable checked_genre a 0
             }
         });
+    }
+
+    private void insertarInformacionUsuario() {
+//        public Usuario(Long id, String nombreUsuario, int edad, String sexo, float estatura) {
+        EditText editTextNombreUsuario = (EditText) viewFragmentRegistro.findViewById(R.id.editTextNombreUsuario);
+        String nombreusuario = editTextNombreUsuario.getText().toString();
+        EditText editTextEstatura = (EditText) viewFragmentRegistro.findViewById(R.id.editTextEstatura);
+        Integer estatura = Integer.parseInt(editTextEstatura.getText().toString());
+        EditText editTextEdad = (EditText) viewFragmentRegistro.findViewById(R.id.editTextEdad);
+        Integer edad = Integer.parseInt(editTextEdad.getText().toString());
+
+        usuarioDao.insertOrReplace(new Usuario(
+                (long) 1,
+                nombreusuario,
+                edad,
+                sexo,
+                estatura
+        ));
+        //                despues de enviar esta informacion se debe settear la variable checked_genre a 0
     }
 }

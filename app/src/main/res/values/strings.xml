@@ -36,6 +36,7 @@
     <string name="lblMenu">Menú</string>
     <string name="lblConsejoDelDia">Consejo del dia:</string>
     <string name="lblActividadFisica">Activida Física diaria?</string>
+    <string name="lblAnios">años </string>
 
 
     <!--TEXTO DE BOTONES-->

@@ -2,6 +2,7 @@ package layout;
 
 
 import android.app.Activity;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import ec.edu.epn.doctorfit.R;
+import ec.edu.epn.doctorfit.sqlite.db.ConsejoDao;
+import ec.edu.epn.doctorfit.sqlite.db.DaoMaster;
+import ec.edu.epn.doctorfit.sqlite.db.DaoSession;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +27,13 @@ public class ActividadFisicaDiaria extends Fragment {
     private Button buttonNoMuyActivo, buttonMedianamenteActivo, buttonActivo, buttonMuyActivo;
     private View fragmentActividadFisica;
 
+
+    private String databaseName;
+    private DaoMaster.DevOpenHelper helper;
+    private SQLiteDatabase db;
+    private DaoMaster daoMaster;
+    private DaoSession daoSession;
+//    private ConsejoDao consejoDao;
     public ActividadFisicaDiaria() {
         // Required empty public constructor
     }
@@ -40,7 +51,7 @@ public class ActividadFisicaDiaria extends Fragment {
     }
 
     public void mostrarSiguienteInterfaz() {
-        Activity activity = new Activity();
+        Activity activity = getActivity();
         Toast.makeText(activity, "siguiente Interfaz", Toast.LENGTH_SHORT).show();
     }
 
@@ -52,7 +63,9 @@ public class ActividadFisicaDiaria extends Fragment {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                insertarInformacionActividaFisicaDiaria();
+                Activity activity = getActivity();
+                Toast.makeText(activity, "INFORMACION ALMACENADA", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -63,10 +76,10 @@ public class ActividadFisicaDiaria extends Fragment {
         buttonNoMuyActivo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonNoMuyActivo.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_checked_genre,0);
-                buttonMedianamenteActivo.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-                buttonActivo.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-                buttonMuyActivo.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+                buttonNoMuyActivo.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_checked_genre, 0);
+                buttonMedianamenteActivo.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                buttonActivo.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                buttonMuyActivo.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 //                despues de enviar esta informacion se debe settear la variable checked_genre a 0
             }
         });
@@ -78,10 +91,10 @@ public class ActividadFisicaDiaria extends Fragment {
         buttonMedianamenteActivo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonMedianamenteActivo.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_checked_genre,0);
-                buttonNoMuyActivo.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-                buttonActivo.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-                buttonMuyActivo.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+                buttonMedianamenteActivo.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_checked_genre, 0);
+                buttonNoMuyActivo.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                buttonActivo.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                buttonMuyActivo.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 //                despues de enviar esta informacion se debe settear la variable checked_genre a 0
             }
         });
@@ -93,10 +106,10 @@ public class ActividadFisicaDiaria extends Fragment {
         buttonActivo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonActivo.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_checked_genre,0);
-                buttonMedianamenteActivo.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-                buttonNoMuyActivo.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-                buttonMuyActivo.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+                buttonActivo.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_checked_genre, 0);
+                buttonMedianamenteActivo.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                buttonNoMuyActivo.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                buttonMuyActivo.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 //                despues de enviar esta informacion se debe settear la variable checked_genre a 0
             }
         });
@@ -108,13 +121,17 @@ public class ActividadFisicaDiaria extends Fragment {
         buttonMuyActivo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonMuyActivo.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_checked_genre,0);
-                buttonMedianamenteActivo.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-                buttonActivo.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-                buttonNoMuyActivo.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+                buttonMuyActivo.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_checked_genre, 0);
+                buttonMedianamenteActivo.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                buttonActivo.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                buttonNoMuyActivo.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 //                despues de enviar esta informacion se debe settear la variable checked_genre a 0
             }
         });
+
+    }
+
+    private void insertarInformacionActividaFisicaDiaria() {
 
     }
 }
