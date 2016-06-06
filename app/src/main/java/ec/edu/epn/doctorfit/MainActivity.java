@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity
         RegistroUsuario.OnFragmentInteractionListener,
         ProgresoUsuario.OnFragmentInteractionListener,
         ActividadFisicaDiaria.OnFragmentInteractionListener,
-DietaActual.OnFragmentInteractionListener{
+        DietaActual.OnFragmentInteractionListener {
     private int year_x, month_x, day_x;
     static final int DIALOG_ID = 0;
 
@@ -73,6 +73,16 @@ DietaActual.OnFragmentInteractionListener{
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        databaseName = getResources().getString(R.string.database_name);
+        //aqui se genera el esquema o se obtiene un objoSQLiteDatabase
+        helper = new DaoMaster.DevOpenHelper(this.getApplicationContext(), databaseName, null);
+        //se habilita a la BDD para ser escrita o leida
+        db = helper.getWritableDatabase();
+        daoMaster = new DaoMaster(db);
+        daoSession = daoMaster.newSession();
+        consejoDao = daoSession.getConsejoDao();
+        alimentoDao = daoSession.getAlimentoDao();
+        platilloDao = daoSession.getPlatilloDao();
         // Verificar si existen los datos en la aplicacion, sino generarlos
         generarDatosAplicacion();
     }
@@ -123,7 +133,7 @@ DietaActual.OnFragmentInteractionListener{
                     R.id.fragment_content_main_layout,
                     homeFragment,
                     homeFragment.getTag()).commit();
-        } else if (id == R.id.nav_registro) {
+        } else if (id == R.id.nav_registro && existeUsuario()) {
 
             RegistroUsuario registroUsuario = new RegistroUsuario();
             FragmentManager fragmentManager = getSupportFragmentManager();
@@ -180,7 +190,7 @@ DietaActual.OnFragmentInteractionListener{
                     R.id.fragment_content_main_layout,
                     progresoUsuario,
                     progresoUsuario.getTag()).commit();
-        }else if(uri==R.layout.fragment_dieta_actual){
+        } else if (uri == R.layout.fragment_dieta_actual) {
             DietaActual dietaActual = new DietaActual();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(
@@ -247,13 +257,13 @@ DietaActual.OnFragmentInteractionListener{
     /**
      * Metodo para generar algunos datos de la aplicacion
      */
-    private void generarDatosAplicacion(){
+    private void generarDatosAplicacion() {
 
         List<Consejo> listaConsejos = consejoDao.queryBuilder().list();
         List<Alimento> listaAlimentos = alimentoDao.queryBuilder().list();
         List<Platillo> listaPlatillos = platilloDao.queryBuilder().list();
 
-        if(listaConsejos.isEmpty() && listaAlimentos.isEmpty() && listaPlatillos.isEmpty()){
+        if (listaConsejos.isEmpty() && listaAlimentos.isEmpty() && listaPlatillos.isEmpty()) {
 
             // generar datos
 
@@ -284,5 +294,9 @@ DietaActual.OnFragmentInteractionListener{
             // ALIMENTO
             //alimentoDao.insert(new Alimento(Long id, String nombreAlimento, String aporteNutricional, float porcentajeNutricional, String tipoAlimento, long idPlatillo);
         }
+    }
+
+    public boolean existeUsuario() {
+return true;
     }
 }
