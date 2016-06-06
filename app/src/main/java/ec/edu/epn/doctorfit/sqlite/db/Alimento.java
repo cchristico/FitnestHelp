@@ -12,10 +12,8 @@ public class Alimento {
     private Long id;
     /** Not-null value. */
     private String nombreAlimento;
-    /** Not-null value. */
     private String aporteNutricional;
-    private float porcentajeNutricional;
-    /** Not-null value. */
+    private int porcentajeNutricional;
     private String tipoAlimento;
     private long idPlatillo;
 
@@ -36,7 +34,7 @@ public class Alimento {
         this.id = id;
     }
 
-    public Alimento(Long id, String nombreAlimento, String aporteNutricional, float porcentajeNutricional, String tipoAlimento, long idPlatillo) {
+    public Alimento(Long id, String nombreAlimento, String aporteNutricional, int porcentajeNutricional, String tipoAlimento, long idPlatillo) {
         this.id = id;
         this.nombreAlimento = nombreAlimento;
         this.aporteNutricional = aporteNutricional;
@@ -69,30 +67,26 @@ public class Alimento {
         this.nombreAlimento = nombreAlimento;
     }
 
-    /** Not-null value. */
     public String getAporteNutricional() {
         return aporteNutricional;
     }
 
-    /** Not-null value; ensure this value is available before it is saved to the database. */
     public void setAporteNutricional(String aporteNutricional) {
         this.aporteNutricional = aporteNutricional;
     }
 
-    public float getPorcentajeNutricional() {
+    public int getPorcentajeNutricional() {
         return porcentajeNutricional;
     }
 
-    public void setPorcentajeNutricional(float porcentajeNutricional) {
+    public void setPorcentajeNutricional(int porcentajeNutricional) {
         this.porcentajeNutricional = porcentajeNutricional;
     }
 
-    /** Not-null value. */
     public String getTipoAlimento() {
         return tipoAlimento;
     }
 
-    /** Not-null value; ensure this value is available before it is saved to the database. */
     public void setTipoAlimento(String tipoAlimento) {
         this.tipoAlimento = tipoAlimento;
     }

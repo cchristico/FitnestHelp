@@ -8,10 +8,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import ec.edu.epn.doctorfit.R;
 import ec.edu.epn.doctorfit.sqlite.db.Consejo;
@@ -93,13 +95,25 @@ public class HomeFragment extends Fragment {
         }
     }
     */
+
     /**
      * Metodo que devuelve los datos de la tabla Consejo
      */
 
     public void obtenerConsejosBdd() {
+        consejoList = consejoDao.queryBuilder().list();
 
+
+        Consejo consejo = new Consejo();
+
+        Random random = new Random();
+        int posicion = random.nextInt(consejoList.size());
+        consejo = (Consejo) consejoList.get(posicion);
+
+        TextView textViewConsejo = (TextView) viewFragmentHome.findViewById(R.id.textViewConsejo);
+        textViewConsejo.setText(consejo.getTextoInformativo());
     }
+
 
 //    DESCOMENTAR ESTE CODIGO PARA INTERACTUAR CON EL MAINACTIVITY
 
@@ -145,3 +159,4 @@ public class HomeFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }*/
 }
+

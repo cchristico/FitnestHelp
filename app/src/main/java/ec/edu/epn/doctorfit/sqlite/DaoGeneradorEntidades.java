@@ -73,9 +73,9 @@ public class DaoGeneradorEntidades {
         Entity alimento = schema.addEntity("Alimento");
         alimento.addIdProperty().primaryKey().autoincrement();
         alimento.addStringProperty("nombreAlimento").notNull();
-        alimento.addStringProperty("aporteNutricional").notNull();
-        alimento.addFloatProperty("porcentajeNutricional").notNull();
-        alimento.addStringProperty("tipoAlimento").notNull();
+        alimento.addStringProperty("aporteNutricional");
+        alimento.addIntProperty("porcentajeNutricional").notNull();
+        alimento.addStringProperty("tipoAlimento");
 
         // RELACIONES ENTRE TABLAS
         Property idUsuarioEstado = estado.addLongProperty("idUsuario").notNull().getProperty();

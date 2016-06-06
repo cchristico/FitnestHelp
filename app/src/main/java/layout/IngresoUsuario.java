@@ -1,6 +1,6 @@
 package layout;
 
-
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,14 +14,14 @@ import ec.edu.epn.doctorfit.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProgresoUsuario extends Fragment {
+public class IngresoUsuario extends Fragment{
 
 
-    private View fragmentPesoActualExpectativa;
+    private View fragmentIngresoUsuario;
     private FloatingActionButton floatingActionButton;
     OnFragmentInteractionListener mListener;
 
-    public ProgresoUsuario() {
+    public IngresoUsuario() {
         // Required empty public constructor
     }
 
@@ -29,15 +29,15 @@ public class ProgresoUsuario extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        fragmentPesoActualExpectativa = inflater.inflate(R.layout.fragment_peso_actual_espectativa_usuario, container, false);
-        floatingActionButton = (FloatingActionButton) fragmentPesoActualExpectativa.findViewById(R.id.fabContinuar);
+        fragmentIngresoUsuario = inflater.inflate(R.layout.fragment_ingreso_usuario, container, false);
+        floatingActionButton = (FloatingActionButton) fragmentIngresoUsuario.findViewById(R.id.fabContinuar);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mostrarSiguienteInterfaz();
             }
         });
-        return fragmentPesoActualExpectativa;
+        return fragmentIngresoUsuario;
 
     }
 
@@ -48,7 +48,7 @@ public class ProgresoUsuario extends Fragment {
     public void mostrarSiguienteInterfaz() {
 //ya que el MainActivity implementa la INTERFAZ onFragmentInteraction, entonces podemos interactuar con ella
 //        mediante el metodo de implementacion al cual le pasamos el layout de la siguiente interfaz como entero
-        mListener.onFragmentInteraction(R.layout.fragment_actividad_fisica_diaria);
+        mListener.onFragmentInteraction(R.layout.fragment_registro_usuario);
 
     }
 

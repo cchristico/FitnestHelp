@@ -35,6 +35,7 @@ import layout.ActividadFisicaDiaria;
 import layout.DietaActual;
 import layout.EstadoUsuario;
 import layout.HomeFragment;
+import layout.IngresoUsuario;
 import layout.ProgresoUsuario;
 import layout.RegistroUsuario;
 
@@ -43,7 +44,9 @@ public class MainActivity extends AppCompatActivity
         RegistroUsuario.OnFragmentInteractionListener,
         ProgresoUsuario.OnFragmentInteractionListener,
         ActividadFisicaDiaria.OnFragmentInteractionListener,
-        DietaActual.OnFragmentInteractionListener {
+        DietaActual.OnFragmentInteractionListener,
+        IngresoUsuario.OnFragmentInteractionListener
+{
     private int year_x, month_x, day_x;
     static final int DIALOG_ID = 0;
 
@@ -56,6 +59,7 @@ public class MainActivity extends AppCompatActivity
     private PlatilloDao platilloDao;
     private AlimentoDao alimentoDao;
     private ConsejoDao consejoDao;
+    private UsuarioDao usuarioDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +87,24 @@ public class MainActivity extends AppCompatActivity
         consejoDao = daoSession.getConsejoDao();
         alimentoDao = daoSession.getAlimentoDao();
         platilloDao = daoSession.getPlatilloDao();
+        usuarioDao = daoSession.getUsuarioDao();
         // Verificar si existen los datos en la aplicacion, sino generarlos
+//        usuarioDao.deleteAll();
         generarDatosAplicacion();
+        if (!existeUsuario()) {
+            IngresoUsuario ingresoUsuario = new IngresoUsuario();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(
+                    R.id.fragment_content_main_layout,
+                    ingresoUsuario,
+                    ingresoUsuario.getTag()
+            ).commit();
+        } else {
+            Toast.makeText(this, "YA ESTAS REGISTRADO", Toast.LENGTH_SHORT).show();
+
+        }
+
+
     }
 
 
@@ -133,16 +153,19 @@ public class MainActivity extends AppCompatActivity
                     R.id.fragment_content_main_layout,
                     homeFragment,
                     homeFragment.getTag()).commit();
-        } else if (id == R.id.nav_registro && existeUsuario()) {
+        } else if (id == R.id.nav_registro) {
+            if (!existeUsuario()) {
+                RegistroUsuario registroUsuario = new RegistroUsuario();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(
+                        R.id.fragment_content_main_layout,
+                        registroUsuario,
+                        registroUsuario.getTag()
+                ).commit();
+            } else {
+                Toast.makeText(this, "YA ESTAS REGISTRADO", Toast.LENGTH_SHORT).show();
 
-            RegistroUsuario registroUsuario = new RegistroUsuario();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(
-                    R.id.fragment_content_main_layout,
-                    registroUsuario,
-                    registroUsuario.getTag()
-            ).commit();
-
+            }
         } else if (id == R.id.nav_progreso) {
             Toast.makeText(this, "PROGRESO", Toast.LENGTH_SHORT).show();
             ProgresoUsuario progresoUsuario = new ProgresoUsuario();
@@ -160,7 +183,7 @@ public class MainActivity extends AppCompatActivity
                     R.id.fragment_content_main_layout,
                     estadoUsuario,
                     estadoUsuario.getTag()).commit();
-            Toast.makeText(this, "RECORDATORIOS", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "ESTADO", Toast.LENGTH_SHORT).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -197,6 +220,13 @@ public class MainActivity extends AppCompatActivity
                     R.id.fragment_content_main_layout,
                     dietaActual,
                     dietaActual.getTag()).commit();
+        }else if (uri == R.layout.fragment_registro_usuario) {
+            RegistroUsuario registroUsuario = new RegistroUsuario();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(
+                    R.id.fragment_content_main_layout,
+                    registroUsuario,
+                    registroUsuario.getTag()).commit();
         }
 
     }
@@ -280,13 +310,41 @@ public class MainActivity extends AppCompatActivity
             consejoDao.insert(new Consejo((long) 10, "No hay alimentos “buenos” o “malos”, sólo dietas buenas o malas. No se sienta culpable de los alimentos que le gustan, simplemente tómelos con moderación y escoja otros alimentos que le proporcionen el equilibrio y la variedad que necesita para conseguir una buena salud."));
 
             // PLATILLO
-            //platilloDao.insert(new Platillo(Long id, String nombrePlatillo, long idDieta));
+            platilloDao.insert(new Platillo((long) 1, "Consomé"));
+            platilloDao.insert(new Platillo((long) 2, "Patatas rellenas con salmón"));
+            platilloDao.insert(new Platillo((long) 3, "Ensalada mixta con atún"));
+            platilloDao.insert(new Platillo((long) 4, "Macarrones con tomate"));
+            platilloDao.insert(new Platillo((long) 5, "Empanada de carne"));
+
             // ALIMENTO
-            //alimentoDao.insert(new Alimento(Long id, String nombreAlimento, String aporteNutricional, float porcentajeNutricional, String tipoAlimento, long idPlatillo);
+            alimentoDao.insert(new Alimento((long) 1, "Pollo", null, 130, null, (long)1));
+            alimentoDao.insert(new Alimento((long) 2, "Zanahoria", null, 37, null, (long)1));
+            alimentoDao.insert(new Alimento((long) 3, "Pollo", null, 24, null, (long)1));
+
+            alimentoDao.insert(new Alimento((long) 4, "Papa", null, 90, null, (long)2));
+            alimentoDao.insert(new Alimento((long) 5, "Salmón", null, 172, null, (long)2));
+
+            alimentoDao.insert(new Alimento((long) 6, "Atún", null, 144, null, (long)3));
+            alimentoDao.insert(new Alimento((long) 7, "Tomate", null, 22, null, (long)3));
+            alimentoDao.insert(new Alimento((long) 8, "lechuga", null, 18, null, (long)3));
+            alimentoDao.insert(new Alimento((long) 9, "Choclo", null, 96, null, (long)3));
+
+            alimentoDao.insert(new Alimento((long) 10, "Macarrones", null, 107, null, (long)4));
+            alimentoDao.insert(new Alimento((long) 11, "Salsa de Tomate", null, 86, null, (long)4));
+
+            alimentoDao.insert(new Alimento((long) 12, "Carne de res", null, 92, null, (long)5));
+            alimentoDao.insert(new Alimento((long) 13, "Arveja", null, 81, null, (long)5));
+            alimentoDao.insert(new Alimento((long) 13, "Harina", null, 364, null, (long)5));
         }
     }
 
     public boolean existeUsuario() {
-return true;
+        List usuarioList = usuarioDao.queryBuilder().list();
+        if (usuarioList.isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
+
     }
 }

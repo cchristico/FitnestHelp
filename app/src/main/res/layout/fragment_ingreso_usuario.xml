@@ -2,19 +2,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="layout.ProgresoUsuario"
     android:orientation="vertical"
+    tools:context="layout.ProgresoUsuario"
 
     >
 
     <!-- TODO: Update blank fragment layout -->
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment"
         android:layout_gravity="center_horizontal"
+<<<<<<< HEAD
         android:textSize="4mm"
         />
 <FrameLayout
@@ -50,37 +53,61 @@
 
 
 </FrameLayout>
+=======
+        android:text="@string/hello_blank_fragment"
+        android:textSize="4mm" />
+>>>>>>> 97f94585be2837ecb8ab0e762bc63067f4804059
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.82">
+        android:layout_weight="0.92">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lblUsuarioNuevo"
-            android:textSize="3.5mm"
-            android:layout_gravity="center_horizontal|top" />
-        <Spinner
-            android:layout_width="220dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinner"
-            android:layout_gravity="center" />
 
         <Button
-            android:layout_width="153dp"
+            android:layout_width="251dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_horizontal|top"
+            android:background="#c9fffefe"
+            android:text="@string/btnPerderPeso" />
+
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btnIngresarUsuario"
+            android:background="?android:attr/selectableItemBackground" />
+
+        <Button
+            android:layout_width="251dp"
+            android:layout_height="66dp"
+            android:layout_gravity="center"
+            android:background="#c9fffefe"
+            android:text="@string/btnGanarPeso" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground" />
+
+        <Button
+            android:layout_width="251dp"
+            android:layout_height="71dp"
             android:layout_gravity="center_horizontal|bottom"
-            android:background="#c9fffefe" />
+            android:background="#c9fffefe"
+            android:text="@string/btnMantenerPeso" />
         />
+
 
     </FrameLayout>
 
 
-
-
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabContinuar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:background="#c9fffefe"
+        android:src="@drawable/ic_continuar" />
 
 
 </LinearLayout>
