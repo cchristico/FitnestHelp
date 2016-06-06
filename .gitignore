@@ -103,3 +103,4 @@ crashlytics.properties
 crashlytics-build.properties
 .idea/misc.xml
 .idea/modules.xml
+.idea/vcs.xml
