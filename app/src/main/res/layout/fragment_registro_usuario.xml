@@ -4,20 +4,20 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondo_doctorfit"
     android:orientation="vertical"
-    tools:context="layout.RegistroUsuario"
-    >
+    tools:context="layout.RegistroUsuario">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/selectableItemBackground"/>
+        android:background="?android:attr/selectableItemBackground" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:text="@string/lblGeneroUsuario"
         android:textColor="#000000"
-        android:textSize="3mm"
-        android:text="@string/lblGeneroUsuario" />
+        android:textSize="3mm" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -43,10 +43,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="@string/lblNombreUsuario"
         android:textColor="#000000"
-        android:textSize="3mm"
-        android:layout_gravity="center"/>
+        android:textSize="3mm" />
 
     <EditText
         android:id="@+id/editTextNombreUsuario"
@@ -57,10 +57,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="@string/lblEstaturaUsuario"
         android:textColor="#000000"
-        android:textSize="3mm"
-        android:layout_gravity="center"/>
+        android:textSize="3mm" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -70,50 +70,57 @@
 
 
         <!--<EditText-->
-            <!--android:id="@+id/editTextEstaturaUsuario"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center" />-->
+        <!--android:id="@+id/editTextEstaturaUsuario"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center" />-->
 
         <NumberPicker
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#c9fffefe"
-            android:layout_gravity="center"></NumberPicker>
+            android:layout_gravity="center"
+            android:background="#c9fffefe"></NumberPicker>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:text="@string/lblCm"
             android:textColor="#000000"
-            android:textSize="3mm"
-            android:text="@string/lblCm" />
+            android:textSize="3mm" />
     </LinearLayout>
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="@string/lblfechaNacimiento"
         android:textColor="#000000"
-        android:textSize="3mm"
-        android:layout_gravity="center"/>
+        android:textSize="3mm" />
 
-    <Button
-        android:id="@+id/btnFechaNacimientoUsuario"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="#c9fffefe"
-        android:text="-- / -- / ----"/>
+        android:orientation="horizontal">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabContinuar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:background="#c9fffefe"
-        android:src="@drawable/ic_continuar"
-        />
+        <Button
+            android:id="@+id/btnFechaNacimientoUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#c9fffefe"
+            android:text="-- / -- / ----" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabContinuar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:background="#c9fffefe"
+            android:src="@drawable/ic_continuar" />
+    </LinearLayout>
 
 
 </LinearLayout>
