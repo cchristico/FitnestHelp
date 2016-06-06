@@ -35,6 +35,7 @@ import layout.ActividadFisicaDiaria;
 import layout.DietaActual;
 import layout.EstadoUsuario;
 import layout.HomeFragment;
+import layout.IngresoUsuario;
 import layout.ProgresoUsuario;
 import layout.RegistroUsuario;
 
@@ -43,7 +44,9 @@ public class MainActivity extends AppCompatActivity
         RegistroUsuario.OnFragmentInteractionListener,
         ProgresoUsuario.OnFragmentInteractionListener,
         ActividadFisicaDiaria.OnFragmentInteractionListener,
-        DietaActual.OnFragmentInteractionListener {
+        DietaActual.OnFragmentInteractionListener,
+        IngresoUsuario.OnFragmentInteractionListener
+{
     private int year_x, month_x, day_x;
     static final int DIALOG_ID = 0;
 
@@ -56,6 +59,7 @@ public class MainActivity extends AppCompatActivity
     private PlatilloDao platilloDao;
     private AlimentoDao alimentoDao;
     private ConsejoDao consejoDao;
+    private UsuarioDao usuarioDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +87,24 @@ public class MainActivity extends AppCompatActivity
         consejoDao = daoSession.getConsejoDao();
         alimentoDao = daoSession.getAlimentoDao();
         platilloDao = daoSession.getPlatilloDao();
+        usuarioDao = daoSession.getUsuarioDao();
         // Verificar si existen los datos en la aplicacion, sino generarlos
+//        usuarioDao.deleteAll();
         generarDatosAplicacion();
+        if (!existeUsuario()) {
+            IngresoUsuario ingresoUsuario = new IngresoUsuario();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(
+                    R.id.fragment_content_main_layout,
+                    ingresoUsuario,
+                    ingresoUsuario.getTag()
+            ).commit();
+        } else {
+            Toast.makeText(this, "YA ESTAS REGISTRADO", Toast.LENGTH_SHORT).show();
+
+        }
+
+
     }
 
 
@@ -133,16 +153,19 @@ public class MainActivity extends AppCompatActivity
                     R.id.fragment_content_main_layout,
                     homeFragment,
                     homeFragment.getTag()).commit();
-        } else if (id == R.id.nav_registro && existeUsuario()) {
+        } else if (id == R.id.nav_registro) {
+            if (!existeUsuario()) {
+                RegistroUsuario registroUsuario = new RegistroUsuario();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(
+                        R.id.fragment_content_main_layout,
+                        registroUsuario,
+                        registroUsuario.getTag()
+                ).commit();
+            } else {
+                Toast.makeText(this, "YA ESTAS REGISTRADO", Toast.LENGTH_SHORT).show();
 
-            RegistroUsuario registroUsuario = new RegistroUsuario();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(
-                    R.id.fragment_content_main_layout,
-                    registroUsuario,
-                    registroUsuario.getTag()
-            ).commit();
-
+            }
         } else if (id == R.id.nav_progreso) {
             Toast.makeText(this, "PROGRESO", Toast.LENGTH_SHORT).show();
             ProgresoUsuario progresoUsuario = new ProgresoUsuario();
@@ -160,7 +183,7 @@ public class MainActivity extends AppCompatActivity
                     R.id.fragment_content_main_layout,
                     estadoUsuario,
                     estadoUsuario.getTag()).commit();
-            Toast.makeText(this, "RECORDATORIOS", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "ESTADO", Toast.LENGTH_SHORT).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -197,6 +220,13 @@ public class MainActivity extends AppCompatActivity
                     R.id.fragment_content_main_layout,
                     dietaActual,
                     dietaActual.getTag()).commit();
+        }else if (uri == R.layout.fragment_registro_usuario) {
+            RegistroUsuario registroUsuario = new RegistroUsuario();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(
+                    R.id.fragment_content_main_layout,
+                    registroUsuario,
+                    registroUsuario.getTag()).commit();
         }
 
     }
@@ -287,6 +317,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     public boolean existeUsuario() {
-return true;
+        List usuarioList = usuarioDao.queryBuilder().list();
+        if (usuarioList.isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
+
     }
 }
