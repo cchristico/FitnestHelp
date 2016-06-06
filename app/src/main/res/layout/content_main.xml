@@ -13,15 +13,7 @@
     tools:context="ec.edu.epn.doctorfit.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/lblBienvenida"
-        android:text="@string/lblBienvenida"
-        android:textSize="8mm"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+
 
     <ImageView
         android:layout_width="wrap_content"
