@@ -83,7 +83,9 @@ public class RegistroUsuario extends Fragment {
 
         // Instanciando recursos de la bd
         databaseName = getResources().getString(R.string.database_name);
+        //aqui se genera el esquema o se obtiene un objoSQLiteDatabase
         helper = new DevOpenHelper(getActivity().getApplicationContext(), databaseName, null);
+        //se habilita a la BDD para ser escrita o leida
         db = helper.getWritableDatabase();
         daoMaster = new DaoMaster(db);
         daoSession = daoMaster.newSession();
