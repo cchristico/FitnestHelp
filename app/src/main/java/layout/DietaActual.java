@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import ec.edu.epn.doctorfit.R;
@@ -20,6 +21,9 @@ import ec.edu.epn.doctorfit.R;
  * to handle interaction events.
  */
 public class DietaActual extends Fragment {
+
+    private Button buttonComidaChatarra;
+    private Button buttonDietaBalanceada;
     private View fragmentDietaActual;
     private OnFragmentInteractionListener mListener;
 
@@ -53,7 +57,38 @@ public class DietaActual extends Fragment {
                 mostrarSiguienteInterfaz();
             }
         });
-    }
+
+        /**
+         * Esta es la  accion que se realiza cuando el Button btnPocaActividad del fragment_actividad_fisica_diaria es presionado
+         */
+        buttonComidaChatarra = (Button) fragmentDietaActual.findViewById(R.id.btnComidaChatarra);
+        buttonComidaChatarra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonComidaChatarra.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_checked_genre, 0);
+                buttonDietaBalanceada.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+
+//                despues de enviar esta informacion se debe settear la variable checked_genre a 0
+            }
+        });
+
+        /**
+         * Esta es la  accion que se realiza cuando el Button btnPocaActividad del fragment_actividad_fisica_diaria es presionado
+         */
+        buttonDietaBalanceada = (Button) fragmentDietaActual.findViewById(R.id.btnDietaBalanceada);
+        buttonDietaBalanceada.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonDietaBalanceada.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_checked_genre, 0);
+                buttonComidaChatarra.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+
+//                despues de enviar esta informacion se debe settear la variable checked_genre a 0
+            }
+        });
+
+
+
+}
 
     public void mostrarSiguienteInterfaz() {
         Activity activity = getActivity();

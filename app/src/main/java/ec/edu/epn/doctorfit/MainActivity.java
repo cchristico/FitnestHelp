@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity
         platilloDao = daoSession.getPlatilloDao();
         usuarioDao = daoSession.getUsuarioDao();
         // Verificar si existen los datos en la aplicacion, sino generarlos
-//        usuarioDao.deleteAll();
+        usuarioDao.deleteAll();
         generarDatosAplicacion();
         if (!existeUsuario()) {
             IngresoUsuario ingresoUsuario = new IngresoUsuario();
