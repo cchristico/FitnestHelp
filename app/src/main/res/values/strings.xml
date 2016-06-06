@@ -27,6 +27,9 @@
     <string name="lblSexoUsuario">SEXO: </string>
     <string name="lblEdadUsuario">EDAD: </string>
     <string name="lblEstaturaUsuario">ESTATURA:</string>
+    <string name="lblPesoActual">¿Cuánto pesas actualmente?:</string>
+    <string name="lblPesoDeseado">¿Cuál es tu peso ideal?:</string>
+    <string name="lblUnidadPeso">kg:</string>
 
     <!--TEXTO DE BOTONES-->
     <string name="btncrear">CREAR</string>
@@ -34,6 +37,11 @@
     <string name="btnPerderPeso">Pierde peso de forma sana \n reduciendo calorías</string>
     <string name="btnMantenerPeso">Mantén tu peso \n disfrutando de una dieta sana</string>
     <string name="btnGanarPeso">Gana peso de forma sana \n ganando masa muscular</string>
+    <string name="btnIngresarUsuario">Crear Plan</string>
+    <string name="btnSigueinte">Siguiente</string>
+
+
+
 
 
 

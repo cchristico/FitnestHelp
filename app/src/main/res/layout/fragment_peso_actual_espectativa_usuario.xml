@@ -1,0 +1,84 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="layout.ProgresoUsuario"
+    android:orientation="vertical"
+    android:background="@drawable/peso_deseado"
+    android:weightSum="1">
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="0.31">
+
+    <TextView
+        android:layout_width="286dp"
+        android:layout_height="wrap_content"
+        android:text="@string/lblPesoActual"
+        android:textSize="3mm"
+        android:layout_gravity="center"
+        android:textColor="#000000" />
+
+    <EditText
+        android:layout_width="114dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/txtPesoActual"
+        android:layout_gravity="center_horizontal|bottom" />
+
+    <TextView
+        android:layout_width="112dp"
+        android:layout_height="wrap_content"
+        android:text="@string/lblUnidadPeso"
+        android:textSize="3mm"
+        android:layout_gravity="right|bottom"
+        android:textColor="#000000" />
+
+</FrameLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.31">
+
+        <TextView
+            android:layout_width="286dp"
+            android:layout_height="wrap_content"
+            android:text="@string/lblPesoDeseado"
+            android:textSize="3mm"
+            android:layout_gravity="center"
+            android:textColor="#000000" />
+
+        <EditText
+            android:layout_width="114dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/txtPesoIdeal"
+            android:layout_gravity="center_horizontal|bottom" />
+
+        <TextView
+            android:layout_width="112dp"
+            android:layout_height="wrap_content"
+            android:text="@string/lblUnidadPeso"
+            android:textSize="3mm"
+            android:layout_gravity="right|bottom"
+            android:textColor="#000000" />
+
+    </FrameLayout>
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
+    android:layout_weight="0.14">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:text="@string/btnSigueinte"
+        />
+</FrameLayout>
+
+</LinearLayout>
