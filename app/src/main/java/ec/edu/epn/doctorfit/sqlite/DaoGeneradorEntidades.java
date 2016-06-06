@@ -60,9 +60,9 @@ public class DaoGeneradorEntidades {
         consejo.addStringProperty("textoInformativo").notNull();
 
         //TABLA DIETA
-        Entity dieta = schema.addEntity("Dieta");
-        dieta.addIdProperty().primaryKey().autoincrement();
-        dieta.addStringProperty("tipoDieta").notNull();
+        //Entity dieta = schema.addEntity("Dieta");
+        //dieta.addIdProperty().primaryKey().autoincrement();
+        //dieta.addStringProperty("tipoDieta").notNull();
 
         // TABLA PLATILLO
         Entity platillo = schema.addEntity("Platillo");
@@ -90,6 +90,7 @@ public class DaoGeneradorEntidades {
         usuario.addToMany(alimentacionSedentarismo, idUsuarioAlimentacionSedentarismo);
         alimentacionSedentarismo.addToOne(usuario,idUsuarioAlimentacionSedentarismo);
 
+        /*
         Property idEstadoDeseado = dieta.addLongProperty("idEstadoDeseado").notNull().getProperty();
         estadoDeseado.addToMany(dieta, idEstadoDeseado);
         dieta.addToOne(estadoDeseado,idEstadoDeseado);
@@ -97,6 +98,7 @@ public class DaoGeneradorEntidades {
         Property idDieta = platillo.addLongProperty("idDieta").notNull().getProperty();
         dieta.addToMany(platillo, idDieta);
         platillo.addToOne(dieta,idDieta);
+        */
 
         Property idPlatillo = alimento.addLongProperty("idPlatillo").notNull().getProperty();
         platillo.addToMany(alimento, idPlatillo);

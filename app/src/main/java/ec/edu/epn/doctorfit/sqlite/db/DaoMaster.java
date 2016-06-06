@@ -13,7 +13,6 @@ import ec.edu.epn.doctorfit.sqlite.db.EstadoDao;
 import ec.edu.epn.doctorfit.sqlite.db.EstadoDeseadoDao;
 import ec.edu.epn.doctorfit.sqlite.db.AlimentacionSedentarismoDao;
 import ec.edu.epn.doctorfit.sqlite.db.ConsejoDao;
-import ec.edu.epn.doctorfit.sqlite.db.DietaDao;
 import ec.edu.epn.doctorfit.sqlite.db.PlatilloDao;
 import ec.edu.epn.doctorfit.sqlite.db.AlimentoDao;
 
@@ -31,7 +30,6 @@ public class DaoMaster extends AbstractDaoMaster {
         EstadoDeseadoDao.createTable(db, ifNotExists);
         AlimentacionSedentarismoDao.createTable(db, ifNotExists);
         ConsejoDao.createTable(db, ifNotExists);
-        DietaDao.createTable(db, ifNotExists);
         PlatilloDao.createTable(db, ifNotExists);
         AlimentoDao.createTable(db, ifNotExists);
     }
@@ -43,7 +41,6 @@ public class DaoMaster extends AbstractDaoMaster {
         EstadoDeseadoDao.dropTable(db, ifExists);
         AlimentacionSedentarismoDao.dropTable(db, ifExists);
         ConsejoDao.dropTable(db, ifExists);
-        DietaDao.dropTable(db, ifExists);
         PlatilloDao.dropTable(db, ifExists);
         AlimentoDao.dropTable(db, ifExists);
     }
@@ -82,7 +79,6 @@ public class DaoMaster extends AbstractDaoMaster {
         registerDaoClass(EstadoDeseadoDao.class);
         registerDaoClass(AlimentacionSedentarismoDao.class);
         registerDaoClass(ConsejoDao.class);
-        registerDaoClass(DietaDao.class);
         registerDaoClass(PlatilloDao.class);
         registerDaoClass(AlimentoDao.class);
     }
