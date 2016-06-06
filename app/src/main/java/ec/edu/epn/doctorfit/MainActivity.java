@@ -3,6 +3,7 @@ package ec.edu.epn.doctorfit;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
@@ -18,7 +19,18 @@ import android.widget.DatePicker;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.List;
 
+import ec.edu.epn.doctorfit.sqlite.db.Alimento;
+import ec.edu.epn.doctorfit.sqlite.db.AlimentoDao;
+import ec.edu.epn.doctorfit.sqlite.db.Consejo;
+import ec.edu.epn.doctorfit.sqlite.db.ConsejoDao;
+import ec.edu.epn.doctorfit.sqlite.db.DaoMaster;
+import ec.edu.epn.doctorfit.sqlite.db.DaoMaster.DevOpenHelper;
+import ec.edu.epn.doctorfit.sqlite.db.DaoSession;
+import ec.edu.epn.doctorfit.sqlite.db.Platillo;
+import ec.edu.epn.doctorfit.sqlite.db.PlatilloDao;
+import ec.edu.epn.doctorfit.sqlite.db.UsuarioDao;
 import layout.ActividadFisicaDiaria;
 import layout.EstadoUsuario;
 import layout.HomeFragment;
@@ -31,6 +43,16 @@ public class MainActivity extends AppCompatActivity
         ProgresoUsuario.OnFragmentInteractionListener {
     private int year_x, month_x, day_x;
     static final int DIALOG_ID = 0;
+
+    // Objetos del ORM
+    private String databaseName;
+    private DevOpenHelper helper;
+    private SQLiteDatabase db;
+    private DaoMaster daoMaster;
+    private DaoSession daoSession;
+    private PlatilloDao platilloDao;
+    private AlimentoDao alimentoDao;
+    private ConsejoDao consejoDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -208,4 +230,17 @@ public class MainActivity extends AppCompatActivity
                     buttonFechaNacimientoUsuario.setText(year_x+" / "+month_x +" / "+day_x);
                 }
             };
+
+
+    private void generarDatosAplicacion(){
+
+        List<Consejo> listaConsejos = consejoDao.queryBuilder().list();
+        List<Alimento> listaAlimentos = alimentoDao.queryBuilder().list();
+        List<Platillo> listaPlatillos = platilloDao.queryBuilder().list();
+
+        if(listaConsejos.isEmpty() && listaAlimentos.isEmpty() && listaPlatillos.isEmpty()){
+
+            
+        }
+    }
 }
