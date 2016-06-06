@@ -204,8 +204,8 @@ public class MainActivity extends AppCompatActivity
                     month_x = monthOfYear + 1;
                     day_x = dayOfMonth;
                     //se establece estos valores en el texto del botton de escoger la fecha del usuario
-                    Button buttonFechaNacimientoUsuario = (Button) findViewById(R.id.btnFechaNacimientoUsuario);
-                    buttonFechaNacimientoUsuario.setText(year_x+" / "+month_x +" / "+day_x);
+//                    Button buttonFechaNacimientoUsuario = (Button) findViewById(R.id.btnFechaNacimientoUsuario);
+//                    buttonFechaNacimientoUsuario.setText(year_x+" / "+month_x +" / "+day_x);
                 }
             };
 }

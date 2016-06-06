@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -38,8 +39,8 @@ public class RegistroUsuario extends Fragment {
     private FloatingActionButton fabContinuar;
     //las siguientes 4 lineas son para el uso del calendario
     private Button buttonFechaNacimiento;
-    private Button buttonMasculino;
-    private Button buttonFemenino;
+    private ImageButton buttonMasculino;
+    private ImageButton buttonFemenino;
     private int year_x, month_x, day_x;
     private static final int DIALOG_ID = 0;
 
@@ -207,7 +208,7 @@ public class RegistroUsuario extends Fragment {
         /**
          * Esta es la accion que se realiza cuadno el boton de fechaNacimieno del usuario es presionado
          */
-        buttonFechaNacimiento = (Button) viewFragmentRegistro.findViewById(R.id.btnFechaNacimientoUsuario);
+      /*  buttonFechaNacimiento = (Button) viewFragmentRegistro.findViewById(R.id.btnFechaNacimientoUsuario);
         buttonFechaNacimiento.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -215,31 +216,31 @@ public class RegistroUsuario extends Fragment {
                         mListener.onFragmentInteraction(R.layout.fragment_registro_usuario, year_x, month_x, day_x);
                     }
                 }
-        );
+        );*/
 
         /**
          * Esta es la  accion que se realiza cuando el boton de MASCULINO   del usuario es presionado
          */
-        buttonMasculino = (Button) viewFragmentRegistro.findViewById(R.id.btnMaculino);
+        buttonMasculino = (ImageButton) viewFragmentRegistro.findViewById(R.id.btnMaculino);
         buttonMasculino.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sexo = buttonMasculino.getText().toString();
-                buttonMasculino.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_checked_genre, 0);
-                buttonFemenino.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                sexo = "Masculino";
+               /* buttonMasculino.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_checked_genre, 0);
+                buttonFemenino.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);*/
 //                despues de enviar esta informacion se debe settear la variable checked_genre a 0
             }
         });
         /**
          * Esta es la  accion que se realiza cuando el boton de FEMENINO   del usuario es presionado
          */
-        buttonFemenino = (Button) viewFragmentRegistro.findViewById(R.id.btnFemenino);
+        buttonFemenino = (ImageButton) viewFragmentRegistro.findViewById(R.id.btnFemenino);
         buttonFemenino.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sexo = buttonFemenino.getText().toString();
-                buttonFemenino.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_checked_genre, 0);
-                buttonMasculino.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                sexo = "Femenino";
+               /* buttonFemenino.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_checked_genre, 0);
+                buttonMasculino.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);*/
 //                despues de enviar esta informacion se debe settear la variable checked_genre a 0
             }
         });
