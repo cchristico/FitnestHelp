@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
@@ -155,26 +156,46 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    /**
+     * Se define la implementacion del constructor OnFragmentInteraccion de la inerfaz que MainAtivity Implementa
+     *
+     * @param uri  R.layout.fragmento, es el valor entero que corresponde a cada fragmento
+     * @param anio el anio actual establecido en el fragmento
+     * @param mes  el mes actual establecido en el fragmento
+     * @param dia  el dia actual establecido en el fragmento
+     */
     public void onFragmentInteraction(int uri, int anio, int mes, int dia) {
 
         if (uri == R.layout.fragment_registro_usuario) {
-            this.year_x=anio;
-            this.month_x=mes;
-            this.day_x=dia;
-            //creamos el Dialogo
+            this.year_x = anio;
+            this.month_x = mes;
+            this.day_x = dia;
+            //creamos el Dialogo que contendra el DatePicker
             showDialog(0);
 
         }
     }
 
+    /**
+     * Sobreescritrua del metodo OnCreteDialog del objeto Dialog
+     * que sera invocado mediante showDialog
+     *
+     * @param id el Id del dialogo
+     * @return
+     */
     @Override
     public Dialog onCreateDialog(int id) {
-        if (id == 0)
+        if (id == DIALOG_ID)
+            //retornamos un DatePickerDialog en el contexto MainActivity
             return new DatePickerDialog(this, dpDialogOnDataSetListener, year_x, month_x, day_x);
         return null;
     }
 
 
+    /**
+     * Se establece que va a hacer el DataPickerDialog cuando este sea invocado
+     * en este caso vamos a mostrar un Toast con la fecha actual
+     */
     DatePickerDialog.OnDateSetListener dpDialogOnDataSetListener =
             new DatePickerDialog.OnDateSetListener() {
                 @Override
@@ -182,8 +203,9 @@ public class MainActivity extends AppCompatActivity
                     year_x = year;
                     month_x = monthOfYear + 1;
                     day_x = dayOfMonth;
-                    Toast.makeText(MainActivity.this, year_x + " / " + month_x + " / " + day_x, Toast.LENGTH_SHORT).show();
-
+                    //se establece estos valores en el texto del botton de escoger la fecha del usuario
+                    Button buttonFechaNacimientoUsuario = (Button) findViewById(R.id.btnFechaNacimientoUsuario);
+                    buttonFechaNacimientoUsuario.setText(year_x+" / "+month_x +" / "+day_x);
                 }
             };
 }

@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -39,10 +40,11 @@ public class RegistroUsuario extends Fragment {
     //    declaramos un objeto de tipo INTERFAZ
     private OnFragmentInteractionListener mListener;
     private FloatingActionButton fabContinuar;
-    //las siguientes tres lineas son para el uso del calendario
+    //las siguientes 4 lineas son para el uso del calendario
     private Button buttonFechaNacimiento;
     private int year_x, month_x, day_x;
-    static final int DIALOG_ID=0;
+    private static final int DIALOG_ID=0;
+
 
     private Activity actividadPadre;
 
@@ -84,6 +86,13 @@ public class RegistroUsuario extends Fragment {
         });
 //        El siguiente metodo estará pendiente de la pulsacion del boton de fecha de nacimiento del ussuairo
         showDataPickerOnClickButton();
+        //las siguientes 4 lineas son para establece la fecha actual en las variables que van a ser utilizadas para el DaataPicker en
+//        el MainActivity
+        final Calendar cal = Calendar.getInstance();
+        year_x=cal.get(Calendar.YEAR);
+        month_x=cal.get(Calendar.MONTH);
+        day_x= cal.get(Calendar.DAY_OF_MONTH);
+
         // Instanciando recursos de la bd
         databaseName = getResources().getString(R.string.database_name);
         helper = new DevOpenHelper(getActivity().getApplicationContext(), databaseName, null);
@@ -184,6 +193,11 @@ public class RegistroUsuario extends Fragment {
         }
     }
 
+    /**
+     * Metodo que contiene la implementacion de un button.SetOnClickistener
+     * para que cuando el boton de la fecha sea presionado, se muestre un calendario
+     * la funcionalidad de mostrar el calendario esta implementada en el MainActivity, ya que es la base de los fragments
+     */
     public void showDataPickerOnClickButton(){
         buttonFechaNacimiento = (Button) viewFragmentRegistro.findViewById(R.id.btnFechaNacimientoUsuario);
         buttonFechaNacimiento.setOnClickListener(
