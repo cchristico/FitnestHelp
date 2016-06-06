@@ -1,10 +1,7 @@
 package ec.edu.epn.doctorfit;
 
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -18,7 +15,6 @@ import android.widget.Toast;
 import layout.ActividadFisicaDiaria;
 import layout.EstadoUsuario;
 import layout.ProgresoUsuario;
-import layout.RecetasUsuario;
 import layout.RegistroUsuario;
 
 public class MainActivity extends AppCompatActivity
@@ -31,15 +27,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
-     /*   fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -112,15 +99,6 @@ public class MainActivity extends AppCompatActivity
                     progresoUsuario.getTag()
             ).commit();
 
-        } else if (id == R.id.nav_recetas_alimentos) {
-            Toast.makeText(this, "RECETAS Y ALIMENTOS", Toast.LENGTH_SHORT).show();
-            RecetasUsuario recetasUsuario = new RecetasUsuario();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(
-                    R.id.fragment_content_main_layout,
-                    recetasUsuario,
-                    recetasUsuario.getTag()
-            ).commit();
         } else if (id == R.id.nav_estado_usuario) {
             EstadoUsuario estadoUsuario = new EstadoUsuario();
             FragmentManager fragmentManager = getSupportFragmentManager();
@@ -136,6 +114,11 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    /**
+     * Implementacion del metodo de la interfaz onFragmentInteraction creda en cada fragmentLayout para
+     * la interaccion entre el MainActivity y los fragmentLayout
+     * @param uri entero que corresponde al layout que se requiere abrir, permite la interaccion entre layouts
+     */
     @Override
     public void onFragmentInteraction(int uri) {
         if (uri == R.layout.fragment_actividad_fisica_diaria) {

@@ -14,10 +14,7 @@
             android:id="@+id/nav_progreso"
             android:icon="@drawable/ic_menu_progreso"
             android:title="Progreso" />
-        <item
-            android:id="@+id/nav_recetas_alimentos"
-            android:icon="@drawable/ic_menu_food"
-            android:title="Mis recetas y alimentos" />
+
         <item
             android:id="@+id/nav_estado_usuario"
             android:icon="@drawable/ic_menu_estado"
