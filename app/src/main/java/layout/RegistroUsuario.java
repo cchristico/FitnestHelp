@@ -74,6 +74,7 @@ public class RegistroUsuario extends Fragment {
         View viewFragmentRegistro = inflater.inflate(R.layout.fragment_registro_usuario, container, false);
         //  busco al objeto(fabContinuar) dentro del fragment(fragment_registro_usuario) a travez de la vista creada(viewFragmentRegistro)
         fabContinuar = (FloatingActionButton) viewFragmentRegistro.findViewById(R.id.fabContinuar);
+
         fabContinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,6 +85,10 @@ public class RegistroUsuario extends Fragment {
 
     }
 
+    /**
+     * Metodo que permite mostrar la siguiente interfaz del usuario que es
+     * un objeto tipo fragment
+     */
     public void mostrarSiguienteInterfaz() {
 
         //  aqui obtenemos la actividad sobre la cual se esta ejecutando el fragment
@@ -112,6 +117,9 @@ public class RegistroUsuario extends Fragment {
         Toast.makeText(actividadPadre, "se muestra la siguiente interfaz", Toast.LENGTH_SHORT).show();
         //EN LUGAR DEL TOAST AGREGAR EL CODIGO PARA MOSTRAR LA SIGUIENTE INTERFAZ
 
+
+        //ya que el MainActivity implementa la INTERFAZ onFragmentInteraction, entonces podemos interactuar con ella
+        //        mediante el metodo de implementacion al cual le pasamos el layout de la siguiente interfaz como entero
         mListener.onFragmentInteraction(R.layout.fragment_peso_actual_espectativa_usuario);
 
     }
@@ -132,7 +140,17 @@ public class RegistroUsuario extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     *
+     */
+    /**
+     * Modificacion personal para que resiva un entero correspondiente al fragment layout que se va
+     * a pasar al ActivityMain
+     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(int uri);
