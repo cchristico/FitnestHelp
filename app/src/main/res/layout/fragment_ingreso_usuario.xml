@@ -24,6 +24,7 @@
 
 
     <Button
+        android:id="@+id/btnObjetivoPerderPeso"
         android:layout_width="251dp"
         android:layout_height="70dp"
         android:text="@string/btnPerderPeso"
@@ -31,6 +32,7 @@
         android:background="#c9fffefe" />
 
     <Button
+        android:id="@+id/btnObjetivoGanarPeso"
         android:layout_width="251dp"
         android:layout_height="66dp"
         android:text="@string/btnGanarPeso"
@@ -38,6 +40,7 @@
         android:background="#c9fffefe" />
 
     <Button
+        android:id="@+id/btnObjetivoMantenerPeso"
         android:layout_width="251dp"
         android:layout_height="71dp"
         android:text="@string/btnMantenerPeso"
