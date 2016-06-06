@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondo_doctorfit"
     android:orientation="vertical"
-    tools:context="layout.RegistroUsuario">
+    tools:context="layout.RegistroUsuario"
+    >
 
     <TextView
         android:layout_width="wrap_content"
@@ -86,6 +87,14 @@
         android:layout_gravity="center"
         android:text="-- / -- / ----"/>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabContinuar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_continuar"
+        android:onClick="mostrarSiguienteInterfaz"/>
 
 
 </LinearLayout>
