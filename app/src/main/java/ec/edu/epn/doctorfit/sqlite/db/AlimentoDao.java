@@ -31,7 +31,7 @@ public class AlimentoDao extends AbstractDao<Alimento, Long> {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property NombreAlimento = new Property(1, String.class, "nombreAlimento", false, "NOMBRE_ALIMENTO");
         public final static Property AporteNutricional = new Property(2, String.class, "aporteNutricional", false, "APORTE_NUTRICIONAL");
-        public final static Property PorcentajeNutricional = new Property(3, float.class, "porcentajeNutricional", false, "PORCENTAJE_NUTRICIONAL");
+        public final static Property PorcentajeNutricional = new Property(3, int.class, "porcentajeNutricional", false, "PORCENTAJE_NUTRICIONAL");
         public final static Property TipoAlimento = new Property(4, String.class, "tipoAlimento", false, "TIPO_ALIMENTO");
         public final static Property IdPlatillo = new Property(5, long.class, "idPlatillo", false, "ID_PLATILLO");
     };
@@ -55,9 +55,9 @@ public class AlimentoDao extends AbstractDao<Alimento, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"ALIMENTO\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"NOMBRE_ALIMENTO\" TEXT NOT NULL ," + // 1: nombreAlimento
-                "\"APORTE_NUTRICIONAL\" TEXT NOT NULL ," + // 2: aporteNutricional
-                "\"PORCENTAJE_NUTRICIONAL\" REAL NOT NULL ," + // 3: porcentajeNutricional
-                "\"TIPO_ALIMENTO\" TEXT NOT NULL ," + // 4: tipoAlimento
+                "\"APORTE_NUTRICIONAL\" TEXT," + // 2: aporteNutricional
+                "\"PORCENTAJE_NUTRICIONAL\" INTEGER NOT NULL ," + // 3: porcentajeNutricional
+                "\"TIPO_ALIMENTO\" TEXT," + // 4: tipoAlimento
                 "\"ID_PLATILLO\" INTEGER NOT NULL );"); // 5: idPlatillo
     }
 
@@ -77,9 +77,17 @@ public class AlimentoDao extends AbstractDao<Alimento, Long> {
             stmt.bindLong(1, id);
         }
         stmt.bindString(2, entity.getNombreAlimento());
-        stmt.bindString(3, entity.getAporteNutricional());
-        stmt.bindDouble(4, entity.getPorcentajeNutricional());
-        stmt.bindString(5, entity.getTipoAlimento());
+ 
+        String aporteNutricional = entity.getAporteNutricional();
+        if (aporteNutricional != null) {
+            stmt.bindString(3, aporteNutricional);
+        }
+        stmt.bindLong(4, entity.getPorcentajeNutricional());
+ 
+        String tipoAlimento = entity.getTipoAlimento();
+        if (tipoAlimento != null) {
+            stmt.bindString(5, tipoAlimento);
+        }
         stmt.bindLong(6, entity.getIdPlatillo());
     }
 
@@ -101,9 +109,9 @@ public class AlimentoDao extends AbstractDao<Alimento, Long> {
         Alimento entity = new Alimento( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.getString(offset + 1), // nombreAlimento
-            cursor.getString(offset + 2), // aporteNutricional
-            cursor.getFloat(offset + 3), // porcentajeNutricional
-            cursor.getString(offset + 4), // tipoAlimento
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // aporteNutricional
+            cursor.getInt(offset + 3), // porcentajeNutricional
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // tipoAlimento
             cursor.getLong(offset + 5) // idPlatillo
         );
         return entity;
@@ -114,9 +122,9 @@ public class AlimentoDao extends AbstractDao<Alimento, Long> {
     public void readEntity(Cursor cursor, Alimento entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setNombreAlimento(cursor.getString(offset + 1));
-        entity.setAporteNutricional(cursor.getString(offset + 2));
-        entity.setPorcentajeNutricional(cursor.getFloat(offset + 3));
-        entity.setTipoAlimento(cursor.getString(offset + 4));
+        entity.setAporteNutricional(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setPorcentajeNutricional(cursor.getInt(offset + 3));
+        entity.setTipoAlimento(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setIdPlatillo(cursor.getLong(offset + 5));
      }
     
