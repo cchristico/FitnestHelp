@@ -15,6 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.util.Iterator;
+import java.util.List;
+
 import ec.edu.epn.doctorfit.MainActivity;
 import ec.edu.epn.doctorfit.R;
 import ec.edu.epn.doctorfit.sqlite.db.DaoMaster;
@@ -97,7 +100,14 @@ public class RegistroUsuario extends Fragment {
         nuevoUsuario.setSexo();
 
         usuarioDao.insert(nuevoUsuario);
+
+        //Verificar que se haya ingresado el usuario, solo por test, luego comentar
+        //Consultar todos
+        List<Usuario> listaUsuarios = usuarioDao.queryBuilder().list();
+        System.out.println("OBTENER TODOS LOS USUARIOS");
+        printList(listaUsuarios);
         */
+
         //  El Toast se ejecuta en una actividad, por tanto se debe establecer como contexto a la actividad padre del fragment
         Toast.makeText(actividadPadre, "se muestra la siguiente interfaz", Toast.LENGTH_SHORT).show();
         //EN LUGAR DEL TOAST AGREGAR EL CODIGO PARA MOSTRAR LA SIGUIENTE INTERFAZ
@@ -126,5 +136,14 @@ public class RegistroUsuario extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(int uri);
+    }
+
+    private void printList(List list){
+
+        Iterator iter = list.iterator();
+        while (iter.hasNext()){
+            Usuario usuario = (Usuario)iter.next();
+            System.out.println(usuario.getNombreUsuario() + " " + usuario.getSexo());
+        }
     }
 }
