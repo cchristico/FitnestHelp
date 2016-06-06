@@ -47,7 +47,8 @@
         android:layout_width="251dp"
         android:layout_height="71dp"
         android:text="@string/btnMantenerPeso"
-        android:layout_gravity="center_horizontal|bottom" />
+        android:layout_gravity="center_horizontal|bottom"
+        android:background="#c9fffefe" />
         />
 
 
@@ -58,18 +59,26 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.82">
 
-        <Spinner
-            android:layout_width="220dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinner"
-            android:layout_gravity="center" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/lblUsuarioNuevo"
             android:textSize="3.5mm"
             android:layout_gravity="center_horizontal|top" />
+        <Spinner
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner"
+            android:layout_gravity="center" />
+
+        <Button
+            android:layout_width="153dp"
+            android:layout_height="wrap_content"
+            android:text="@string/btnIngresarUsuario"
+            android:layout_gravity="center_horizontal|bottom"
+            android:background="#c9fffefe" />
+        />
+
     </FrameLayout>
 
 
