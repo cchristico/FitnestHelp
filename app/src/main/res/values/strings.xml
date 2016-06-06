@@ -34,6 +34,7 @@
     <string name="lblPesoDeseado">¿Cuál es tu peso ideal?:</string>
     <string name="lblUnidadPeso">kg:</string>
     <string name="lblMenu">Menú</string>
+    <string name="lblConsejoDelDia">CONSEJO DEL DIA:</string>
 
 
     <!--TEXTO DE BOTONES-->

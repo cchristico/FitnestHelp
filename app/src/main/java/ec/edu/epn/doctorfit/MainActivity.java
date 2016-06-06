@@ -14,11 +14,14 @@ import android.widget.Toast;
 
 import layout.ActividadFisicaDiaria;
 import layout.EstadoUsuario;
+import layout.HomeFragment;
 import layout.ProgresoUsuario;
 import layout.RegistroUsuario;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, RegistroUsuario.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        RegistroUsuario.OnFragmentInteractionListener,
+        ProgresoUsuario.OnFragmentInteractionListener {
 
 
     @Override
@@ -78,9 +81,14 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_inicio) {
-            Toast.makeText(this, "INICIO", Toast.LENGTH_SHORT).show();
+            HomeFragment homeFragment = new HomeFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(
+                    R.id.fragment_content_main_layout,
+                    homeFragment,
+                    homeFragment.getTag()).commit();
         } else if (id == R.id.nav_registro) {
-            Toast.makeText(this, "REGISTRO", Toast.LENGTH_SHORT).show();
+
             RegistroUsuario registroUsuario = new RegistroUsuario();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(

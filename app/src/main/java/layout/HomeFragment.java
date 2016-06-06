@@ -11,15 +11,9 @@ import android.view.ViewGroup;
 import ec.edu.epn.doctorfit.R;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link HomeFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- */
 public class HomeFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
+    //private OnFragmentInteractionListener mListener;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -33,6 +27,11 @@ public class HomeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
+//    DESCOMENTAR ESTE CODIGO PARA INTERACTUAR CON EL MAINACTIVITY
+
+
+
+/*
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -57,7 +56,7 @@ public class HomeFragment extends Fragment {
         mListener = null;
     }
 
-    /**
+    *//**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
@@ -66,9 +65,9 @@ public class HomeFragment extends Fragment {
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
-     */
+     *//*
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
-    }
+    }*/
 }
